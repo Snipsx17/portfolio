@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Poppins;
+  font-weight: 400;
+  src: url(/fonts/Poppins.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: Mulish;
+  font-weight: 400;
+  src: url(/fonts/Mulish.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: Kanit;
+  font-weight: 400;
+  src: url(/fonts/Kanit.ttf) format('ttf');
+}
