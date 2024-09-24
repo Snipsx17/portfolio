@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '../images/logo.svg'
+import LangSelector from './LangSelector.astro'
+---
+
+<header class="flex justify-between px-52 py-8 bg-slate-400 absolute top-0 left-0 right-0">
+        <a href="/">
+                <Image  src={Logo} alt='Logo' width='250' quality='max' />
+        </a>
+        <nav class="flex items-center">
+                <ul class="flex gap-20 uppercase text-2xl font-p font-normal">
+                        <li><a href="#about">about</a></li>
+                        <li><a href="#projects">projects</a></li>
+                        <li><a href="#experiences">experiences</a></li>
+                        <li><a href="#aducation">education</a></li>
+                        <li><a href="#contact">contact</a></li>
+                        <LangSelector />
+                </ul>
+        </nav>
+</header>
