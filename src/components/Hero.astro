@@ -1,14 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import Stack from '../images/stack.png'
+import ButtonCV from './ButtonCV.astro'
 ---
 
-<section class="flex justify-center border-2 py-36 pt-60">
+<section class="hero_section flex justify-center py-36 pt-[250px] bg-gradient-to-b from-blue/20">
     <div class="flex gap-40 items-center">
         <div class="w-[600px]">
             <h1 class="font-header uppercase font-bold text-5xl pb-3">Uberth Hernández</h1>
             <h2 class="font-header2 text-4xl text-[blue] mb-6">Full Stack Developer</h2>
-            <p class="text-3xl">
+            <p class="text-3xl leading-12 font-p">
                 Web Developer with over 2 years of experience. Throughout my career, I've utilized 
                 technologies such as HTML, CSS, JavaScript, ReactJS, NodeJS, Express, MongoDB, 
                 PostgreSQL, and WordPress. As a professional, I constantly seek improvement, 
@@ -16,9 +17,12 @@ import Stack from '../images/stack.png'
                 about DevOps and Cloud technologies.
             </p>
                 <br>
-            <p class="text-3xl">
+            <p class="text-3xl leading-12 font-p mb-10">
                 My greatest quality? My adaptability. I can seamlessly adjust to changing situations,making me a highly dynamic individual.
             </p>
+                
+            <ButtonCV />
+     
         </div>
         <div>
             <Image src={Stack} alt='Stack' width='350' quality='max'/>

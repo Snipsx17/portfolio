@@ -1,0 +1,81 @@
+---
+import DownIcon from '../images/down-icon.svg'
+---
+
+<a href="/public/CV_Uberth_Hernandez.pdf" target="_blank" class="rbt-btn btn-border-gradient radius-round font-p text-blue uppercase"> 
+    <span class="btn-text">
+      Download CV
+    </span>
+  <span class="icon"></span>
+</a> 
+
+<style>
+    .rbt-btn.btn-border-gradient {
+        background: linear-gradient(70deg, #0029FF, #D8ECFF);
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        color: #0029FF;
+        text-decoration: none;
+        box-shadow: 0 10px 13px 0 rgba(209, 211, 237, .39);
+        border-radius: 0;
+    }
+
+    .rbt-btn {
+        padding: 0 56px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px;
+        letter-spacing: .5px;
+        font-weight: 500;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        transition: all .4s ease-in-out;
+        border-radius: 6px;
+        border: 0;
+        outline: 0;
+    }
+
+    .radius-round {
+        border-radius: 22px !important;
+    }
+
+    .rbt-btn.btn-border-gradient.radius-round::before {
+        border-radius: 20px;
+    }
+
+    .rbt-btn.btn-border-gradient::before {
+        content: "";
+        z-index: -1;
+        top: 3px;
+        left: 3px;
+        position: absolute;
+        background: #f5f6ff;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        box-sizing: border-box;
+    }
+
+    .icon{
+    opacity: 0;
+    transition: all .4s ease-in-out;
+    
+    }
+
+    .icon::before{
+        content: "";
+        position: absolute;
+        top: 21px;
+        right: 30px;
+        width: 18px;
+        height: 18px;
+        background-image: url('../images/down-icon.svg');
+    }
+
+    .rbt-btn:hover .icon{
+    opacity: 1;
+    }
+</style>
