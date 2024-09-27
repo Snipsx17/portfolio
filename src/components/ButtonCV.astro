@@ -1,5 +1,6 @@
 ---
 import DownIcon from '../images/down-icon.svg'
+import Icon from '../images/download.png'
 ---
 
 <a href="/public/CV_Uberth_Hernandez.pdf" target="_blank" class="rbt-btn btn-border-gradient radius-round font-p text-blue uppercase"> 
@@ -25,11 +26,11 @@ import DownIcon from '../images/down-icon.svg'
 
     .rbt-btn {
         padding: 0 56px;
-        height: 60px;
-        line-height: 60px;
-        font-size: 16px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
         letter-spacing: .5px;
-        font-weight: 500;
+        font-weight: 400;
         display: inline-block;
         position: relative;
         z-index: 1;
@@ -37,6 +38,7 @@ import DownIcon from '../images/down-icon.svg'
         border-radius: 6px;
         border: 0;
         outline: 0;
+        animation: fade-in .5s linear;
     }
 
     .radius-round {
@@ -53,29 +55,56 @@ import DownIcon from '../images/down-icon.svg'
         top: 3px;
         left: 3px;
         position: absolute;
-        background: #f5f6ff;
+        background: #f0f1fe;
         width: calc(100% - 6px);
         height: calc(100% - 6px);
         box-sizing: border-box;
     }
 
+    .btn-text{
+        font-weight: 600;
+        display: inline-block;
+        transition: all .2s ease-in-out;
+    }
+
     .icon{
-    opacity: 0;
-    transition: all .4s ease-in-out;
-    
+        opacity: 0;
+        transition: all .2s ease-in-out;
     }
 
     .icon::before{
         content: "";
         position: absolute;
-        top: 21px;
-        right: 30px;
-        width: 18px;
-        height: 18px;
-        background-image: url('../images/down-icon.svg');
+        top: 17px;
+        right: 43px;
+        width: 15px;
+        height: 15px;
+        color: #0029FF;
+        background-image: url('../images/download.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .rbt-btn:hover .icon{
-    opacity: 1;
+        opacity: 1;
     }
+
+    .rbt-btn:hover .btn-text{
+        transform: translate(-10px);
+        transition: all .2s ease-in-out;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+
 </style>
