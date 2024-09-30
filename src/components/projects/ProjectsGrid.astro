@@ -1,14 +1,21 @@
 ---
 import ProjectCard from './ProjectCard.astro'
+import { getCollection } from 'astro:content';
+
+interface project {
+    data: {title: string
+    description: string
+    git: string
+    url: string}
+}
+
+const allBlogPosts:project[] = await getCollection('projects');
 ---
 
 <div class="grid grid-cols-3 gap-20">
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-
+    {
+        allBlogPosts.map( project => 
+            <ProjectCard title={project.data.title} description={project.data.description} git={project.data.git} url={project.data.url} />
+        )
+    }
 </div>
