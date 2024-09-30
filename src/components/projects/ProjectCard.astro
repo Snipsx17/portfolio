@@ -2,32 +2,25 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import img from '../../images/project_img.png'
+import img from '../../images/search.png'
 import React from '../../images/stack/react.png'
 import Typescript from '../../images/stack/ts.png'
 import Mongo from '../../images/stack/mongodb.png'
 import Express from '../../images/stack/express.png'
 ---
 
-<div class=" h-[300px] rounded-2xl shadow-md">
-    <div class="relative h-[160px] w-[300x] border-b-[1px] border-lightGray">
-        <Image class=" w-full h-full object-cover" src={img}  alt='project' />
-    </div>
+<div class="p-10 shadow-[0px_0px_20px_10px_rgba(150,150,150,0.1)] rounded-2xl hover:scale-105 transition-all	">
     <div>
-        <h4 class="uppercase text-3xl font-bold font-header2 text-center my-5">news expert app</h4>
-        <div class="bg-lightBlue flex py-5 mb-3">
-            <a class="font-bold text-2xl font-p flex-auto text-center flex align-middle justify-center uppercase gap-3 border-r-2" href="">live <Icon name='link' />
-            </a>
-            <a class="font-bold text-2xl font-p flex-auto text-center flex align-middle justify-center uppercase gap-3" href="">code <Icon name='git' />
-            </a>
+        <div class="relative h-[160px] w-[300x] rounded-2xl overflow-hidden mb-6">
+            <Image class=" w-full h-full object-cover" src={img}  alt='project' />
         </div>
         <div>
-            <!-- stack -->
-            <div class="flex justify-around content-center">
-                <Image src={React} width={30} densities={[1.5, 2]} alt='react' />
-                <Image src={Typescript} width={30} densities={[1.5, 2]} alt='Typescript' />
-                <Image src={Express} width={30} densities={[1.5, 2]} alt='Express' />
-                <Image src={Mongo} width={30} densities={[1.5, 2]} alt='MongoDB' />
+            <h3 class="font-header2 font-bold text-4xl mb-6">News app</h3>
+            <p class="font-p text-3xl line-clamp-2 mb-6 text-gray/70">News search engine, implements api for get the news, you can filter the search by date.</p>
+            <h4 class="font-p font-bold mb-6">Stack: React, Vite, Typescript, Node</h4>
+            <div class="flex justify-evenly border-t-[1px] pt-6">
+                <a href="">Code <Icon class:list='inline' name='git' /></a>
+                <a href="">Live Preview <Icon class:list='inline' name='link' /></a>
             </div>
         </div>
     </div>
