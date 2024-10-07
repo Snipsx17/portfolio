@@ -1,11 +1,13 @@
 ---
-import Dot from '@components/experiences/Dot.astro'
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import ExperienceCard from './ExperienceCard.astro'
+
+type experience = CollectionEntry<'experiences'>;
+
+const experineces: experience[] = await getCollection('experiences');
 ---
 
 <div class="flex flex-col">
-    <ExperienceCard />
-    <ExperienceCard />
-    <ExperienceCard />
-    <ExperienceCard />
+    {experineces.map( exp => <ExperienceCard experience={exp} />)}
 </div>
