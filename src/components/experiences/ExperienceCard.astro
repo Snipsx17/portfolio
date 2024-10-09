@@ -1,87 +1,106 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import Dot from "./Dot.astro";
+import Dot from './Dot.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
-    experience: CollectionEntry<'experiences'>;
+  experience: CollectionEntry<'experiences'>;
 }
 
 const { experience } = Astro.props;
 ---
 
 <div class="flex mb-[-3px]">
-    <div class="relative mr-10 mt-4">
-        <Dot />
-        <div class="absolute left-0 right-0 top-8 w-2 h-full bg-lightBlue m-auto z-0"></div>
+  <div class="relative mr-10 mt-4">
+    <Dot />
+    <div
+      class="absolute left-0 right-0 top-8 w-2 h-full bg-lightBlue m-auto z-0"
+    >
     </div>
-    <div class="card relative w-full shadow-xl rounded-3xl mb-[60px]">
-        <div class="card-body pb-[63px] font-p text-3xl">
-            <div class="card-title relative flex select-none justify-between p-8 bg-lightBlue font-header2 text-3xl font-bold">
-                <input class="w-full h-full absolute top-0 left-0 opacity-0 z-50" type="checkbox">
-                <h3>{experience.data.title} <small>{experience.data.address}</small></h3>
-                <span>
-                    <h3>{experience.data.date} <Icon class:list='arrow inline w-10 h-10' name='arrow' /></h3>
-                </span>
-            </div>
-            <div class="py-16 pl-24 pr-16">
-                <ul class="list-disc mb-8">
-                    {experience.data.description.map( desc => <li class="mb-4">{desc}</li>)}
-                </ul>
-                <h4><strong>Stack: </strong>{experience.data.stack}</h4>
-            </div>
+  </div>
+  <div
+    class="card relative min-w-[220px] w-full shadow-xl rounded-3xl mb-[60px]"
+  >
+    <div class="card-body pb-[63px] font-p text-3xl">
+      <div
+        class="card-title relative flex select-none items-center justify-between p-8 bg-lightBlue font-header2 text-3xl font-bold"
+      >
+        <input
+          class="w-full h-full absolute top-0 left-0 opacity-0 z-30"
+          type="checkbox"
+        />
+        <div>
+          <h3 class="line-clamp-1">
+            {experience.data.title}
+          </h3>
+          <h4 class="text-2xl line-clamp-1">{experience.data.address}</h4>
         </div>
+        <span class="flex items-center">
+          <h3>
+            {experience.data.date}
+          </h3>
+          <Icon class:list="arrow inline w-16 h-16" name="arrow" />
+        </span>
+      </div>
+      <div class="py-16 pl-24 pr-16">
+        <ul class="list-disc mb-8">
+          {
+            experience.data.description.map((desc) => (
+              <li class="mb-4">{desc}</li>
+            ))
+          }
+        </ul>
+        <h4><strong>Stack: </strong>{experience.data.stack}</h4>
+      </div>
     </div>
+  </div>
 
-    <div>
-
-    </div>
+  <div></div>
 </div>
 <style>
-    .card {
-        display: grid; /* 1 */
-        grid-template-rows: 0fr; /* 2 */
-        transition: grid-template-rows 0.5s ease-in-out; /* 3 */
-    }
+  .card {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-in-out;
+  }
 
-    .card-title{
-        border-top-left-radius: 1.5rem;
-        border-top-right-radius: 1.5rem;
-        border-bottom-left-radius: 1.5rem;
-        border-bottom-right-radius: 1.5rem;
-        transition-delay: .4s;
-    }
+  .card-title {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    transition-delay: 0.4s;
+  }
 
-    .card-body{
-        overflow: hidden;
-        padding-bottom: 63px;
-        transition-delay: .2s;
-    }
+  .card-body {
+    overflow: hidden;
+    padding-bottom: 83px;
+    transition-delay: 0.2s;
+  }
 
-    .arrow{
-        transform: rotate(0deg);
-        transition: all .2s linear .2s;
-    }
+  .arrow {
+    transform: rotate(0deg);
+    transition: all 0.2s linear 0.2s;
+  }
 
-    .card:has(input:checked){
-        grid-template-rows: 1fr; /* 2 */
-    }
+  .card:has(input:checked) {
+    grid-template-rows: 1fr; /* 2 */
+  }
 
-    .card:has(input:checked) .card-title{
-        border-top-left-radius: 1.5rem;
-        border-top-right-radius: 1.5rem;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        transition-delay: .2s;
-    }
+  .card:has(input:checked) .card-title {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    transition-delay: 0.2s;
+  }
 
-    .card-body:has(input:checked){
-        padding-bottom: 0;
-    }
+  .card-body:has(input:checked) {
+    padding-bottom: 0;
+  }
 
-    .card-body:has(input:checked) .arrow{
-        padding-bottom: 0;
-        transform: rotate(90deg);
-    }
- 
+  .card-body:has(input:checked) .arrow {
+    padding-bottom: 0;
+    transform: rotate(90deg);
+  }
 </style>
