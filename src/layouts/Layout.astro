@@ -1,42 +1,46 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 const { title } = Astro.props;
-import '../styles/main.css'
+import '../styles/main.css';
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Portfolio Uberth Hernandez web developer." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/ico" href="/favicon.ico" />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfolio Uberth Hernandez web developer."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	*{
-		margin: 0;
-		padding: 0;
-		box-sizing: inherit;
-	}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
 
-	html {
-		box-sizing: border-box;
-		font-size: 62.5%;
-	}
+  html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
 
-	*:before,
-	*:after {
-		box-sizing: inherit;
-	}
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
 
-	body {
-		font-size: 1.6rem;
-	}
+  body {
+    font-size: 1.6rem;
+  }
 </style>

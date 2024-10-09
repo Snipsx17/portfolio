@@ -1,23 +1,30 @@
 ---
 interface Props {
-    text: string;
+  text: string;
 }
 
 const { text } = Astro.props;
 ---
 
-<div class="cloud absolute right-[-60%] top-[50%] bg-white rounded-xl text-center drop-shadow-md py-3 px-6 rotate-[-17deg]">
-    <p class="font-p text-xl">{text}</p>
+<div
+  class="cloud absolute lg:right-[-60%] right-[-40%] lg:top-[50%] bg-white rounded-xl text-center drop-shadow-md py-3 px-6 rotate-[-17deg]"
+>
+  <p class="font-p lg:text-xl text-[10px]">{text}</p>
 </div>
 <style>
-    .cloud{
-        animation: floating 3s ease-in-out infinite;
-    }
-    
-    @keyframes floating {
-        0% {top: 50%;}
-        50% {top: 60%;}
-        100% {top: 50%}
-    }
+  .cloud {
+    animation: floating 3s ease-in-out infinite;
+  }
 
+  @keyframes floating {
+    0% {
+      top: 50%;
+    }
+    50% {
+      top: 60%;
+    }
+    100% {
+      top: 50%;
+    }
+  }
 </style>

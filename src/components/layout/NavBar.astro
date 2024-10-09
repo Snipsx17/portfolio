@@ -1,21 +1,27 @@
 ---
 import { Image } from 'astro:assets';
-import Logo from '@images/logo.svg'
-import LangSelector from './LangSelector.astro'
+import Logo from '@images/logo.svg';
+import LangSelector from './LangSelector.astro';
+import NavLinks from './NavLinks.astro';
+import HamburguerMenu from './HamburguerMenu.astro';
 ---
 
-<header class="flex justify-between px-52 py-8 sticky top-0 left-0 right-0 bg-white/50 backdrop-blur-sm z-50">
-        <a href="/">
-                <Image  src={Logo} alt='Logo' width='250' quality='max' />
-        </a>
-        <nav class="flex items-center">
-                <ul class="flex gap-20 uppercase text-2xl font-p font-normal">
-                        <li><a href="#about">about</a></li>
-                        <li><a href="#projects">projects</a></li>
-                        <li><a href="#experiences">experiences</a></li>
-                        <li><a href="#aducation">education</a></li>
-                        <li><a href="#contact">contact</a></li>
-                        <LangSelector />
-                </ul>
-        </nav>
+<header
+  class="flex justify-between bg-white items-center lg:px-52 px-16 py-8 sticky top-0 left-0 right-0 md:bg-white/50 md:backdrop-blur-sm z-50 overflow-x-clip"
+>
+  <a class="basis-2/3 md:basis-1/4" href="/">
+    <Image
+      src={Logo}
+      alt="Logo"
+      widths={[240, 540, 720, Logo.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Logo.width}px`}
+    />
+  </a>
+  <nav class="flex items-center">
+    <ul class="hidden md:gap-10 uppercase font-p font-normal md:flex">
+      <NavLinks />
+      <LangSelector />
+    </ul>
+    <HamburguerMenu />
+  </nav>
 </header>

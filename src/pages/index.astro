@@ -1,19 +1,18 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Hero from '@components/Hero.astro';
-import NavBar from '@components/layout/NavBar.astro'
+import NavBar from '@components/layout/NavBar.astro';
 import Stack from '@components/stack-carrousel/Stack.astro';
 import Projects from '@components/projects/Projects.astro';
 import Experiences from '@components/experiences/Experiences.astro';
 ---
 
 <Layout title="Uberth Hernandez">
-	<NavBar />
-	<main >
-		<Hero />
-		<Stack />
-		<Projects />
-		<Experiences />
-	</main>
+  <NavBar />
+  <main class="overflow-hidden">
+    <Hero />
+    <Stack />
+    <Projects />
+    <Experiences />
+  </main>
 </Layout>
-
