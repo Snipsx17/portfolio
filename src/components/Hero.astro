@@ -1,24 +1,36 @@
 ---
-import Developer from '@images/developer.svg'
-import ButtonCV from '@components/layout/ButtonCV.astro'
-import Cloud from '@components/layout/Cloud.astro'
+import Developer from '@images/developer.svg';
+import ButtonCV from '@components/layout/ButtonCV.astro';
+import Cloud from '@components/layout/Cloud.astro';
 ---
 
-<section class="flex flex-col h-[800px] hero_section items-center mt-[-80px] pt-[180px] px-[300px] bg-gradient-to-b from-blue/20">
-    <div class="relative mb-16">
-        <Cloud text='Full Stack Developer 🚀' />
-        <img src={Developer.src} alt='Stack' width='200'/>
-    </div>
-    <h1 class="font-header uppercase font-bold text-5xl pb-5">Uberth Hernández</h1>
-    <p class="text-3xl leading-relaxed font-p text-gray pb-16">
-        Web Developer with over 2 years of experience. Throughout my career, I've utilized 
-        technologies such as HTML, CSS, JavaScript, ReactJS, NodeJS, Express, MongoDB, 
-        PostgreSQL, and WordPress. As a professional, I constantly seek improvement, 
-        continuously learning new things to enhance my skills. In addition I'm passionate 
-        about DevOps and Cloud technologies.
-    </p>
-                
-    <ButtonCV />
+<section
+  id="about"
+  class="flex flex-col h-[800px] hero_section items-center mt-[-80px] pt-[180px] lg:px-[300px] px-20 bg-gradient-to-b from-blue/20"
+>
+  <div class="relative mb-16">
+    <Cloud text="Full Stack Developer 🚀" />
+    <img src={Developer.src} alt="Stack" width="200" />
+  </div>
+  <h1
+    class="font-header uppercase font-bold text-4xl sm:text-5xl lg:pb-5 pb-10"
+  >
+    Uberth Hernández
+  </h1>
+  <p
+    class="hidden lg:block text-2xl sm:text-3xl leading-relaxed font-p text-gray pb-16"
+  >
+    Web Developer with over 2 years of experience. Throughout my career, I've
+    utilized technologies such as HTML, CSS, JavaScript, ReactJS, NodeJS,
+    Express, MongoDB, PostgreSQL, and WordPress. As a professional, I constantly
+    seek improvement, continuously learning new things to enhance my skills. In
+    addition I'm passionate about DevOps and Cloud technologies.
+  </p>
+  <p class="text-2xl sm:text-3xl leading-relaxed font-p text-gray pb-16">
+    Web Developer with over 2 years of experience. Throughout my career, I've
+    utilized technologies such as HTML, CSS, JavaScript, ReactJS, NodeJS,
+    Express, MongoDB, PostgreSQL, and WordPress.
+  </p>
 
-
+  <ButtonCV />
 </section>
