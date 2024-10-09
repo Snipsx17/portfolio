@@ -2,31 +2,40 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
-import img from '@images/search.png'
+import img from '@images/search.png';
 
 interface Props {
-    title: string
-    description: string
-    git: string
-    url: string
+  title: string;
+  description: string;
+  git: string;
+  url: string;
+  stack: string;
 }
 
-const { title, description, git, url } = Astro.props
+const { title, description, git, url, stack } = Astro.props;
 ---
 
-<div class="p-10 shadow-[0px_0px_20px_10px_rgba(150,150,150,0.1)] rounded-2xl hover:scale-105 transition-all">
-    <div>
-        <div class="relative h-[160px] w-[300x] rounded-2xl overflow-hidden mb-6">
-            <Image class=" w-full h-full object-cover" src={img}  alt='project' />
-        </div>
-        <div>
-            <h3 class="font-header2 font-bold text-4xl mb-6">{ title }</h3>
-            <p class="font-p text-3xl line-clamp-2 mb-6 text-gray/70">{ description }</p>
-            <h4 class="font-p font-bold mb-6">Stack: React, Vite, Typescript, Node</h4>
-            <div class="flex justify-evenly border-t-[1px] pt-6">
-                <a href={git} target="_blank">Code <Icon class:list='inline' name='git' /></a>
-                <a href={url} target="_blank">Live Preview <Icon class:list='inline' name='link' /></a>
-            </div>
-        </div>
+<div
+  class="p-10 shadow-[0px_0px_20px_10px_rgba(150,150,150,0.1)] rounded-2xl hover:scale-105 transition-all"
+>
+  <div>
+    <div class="relative h-[160px] w-[300x] rounded-2xl overflow-hidden mb-6">
+      <Image class="w-full h-full object-cover" src={img} alt="project" />
     </div>
+    <div>
+      <h3 class="font-header2 font-bold text-4xl mb-6">{title}</h3>
+      <p class="font-p text-3xl line-clamp-2 mb-6 text-gray/70">
+        {description}
+      </p>
+      <h4 class="font-p font-bold mb-6">Stack: {stack}</h4>
+      <div class="flex justify-evenly border-t-[1px] pt-6">
+        <a href={git} target="_blank"
+          >Code <Icon class:list="inline" name="git" /></a
+        >
+        <a href={url} target="_blank"
+          >Live Preview <Icon class:list="inline" name="link" /></a
+        >
+      </div>
+    </div>
+  </div>
 </div>
