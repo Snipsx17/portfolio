@@ -1,5 +1,5 @@
 ---
-title: 'Freelance'
+title: 'Freelance web developer'
 address: 'Spain.'
 date: '2021 - 2022'
 description:

@@ -18,6 +18,7 @@ const projectCollections = defineCollection({
     description: z.string(),
     git: z.string(),
     url: z.string(),
+    stack: z.string(),
   }),
 });
 
