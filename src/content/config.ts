@@ -22,7 +22,17 @@ const projectCollections = defineCollection({
   }),
 });
 
+const studiesCollections = defineCollection({
+  type: 'content',
+  schema: z.object({
+    education: z.string(),
+    school: z.string(),
+    date: z.string(),
+  }),
+});
+
 export const collections = {
   experiences: experiencesCollections,
   projects: projectCollections,
+  studies: studiesCollections,
 };
