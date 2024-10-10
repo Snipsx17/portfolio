@@ -5,14 +5,18 @@ import NavBar from '@components/layout/NavBar.astro';
 import Stack from '@components/stack-carrousel/Stack.astro';
 import Projects from '@components/projects/Projects.astro';
 import Experiences from '@components/experiences/Experiences.astro';
+import Education from '@components/education/Education.astro';
+import Contact from '@components/contact/Contact.astro';
 ---
 
 <Layout title="Uberth Hernandez">
   <NavBar />
-  <main class="overflow-hidden">
+  <main class="overflow-hidden mt-[-90px]">
     <Hero />
     <Stack />
     <Projects />
     <Experiences />
+    <Education />
+    <Contact />
   </main>
 </Layout>

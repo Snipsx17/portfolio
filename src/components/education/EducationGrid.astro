@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import EducationItem from './EducationItem.astro';
+
+type study = CollectionEntry<'studies'>;
+const studies: study[] = await getCollection('studies');
+---
+
+<div class="lg:mx-48 mx-10">
+  {studies.map((educ) => <EducationItem education={educ} />)}
+</div>
