@@ -1,5 +1,125 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
 <section id="contact" class="md:px-[100px] px-10 mb-[100px]">
   <h2 class="text-center font-header uppercase font-bold text-6xl pb-[80px]">
     contact
   </h2>
+  <div class="flex justify-center gap-6 rounded-lg shadow-md w-[700px] m-auto">
+    <div
+      class="relative flex-1 bg-gradient-to-b from-[#8a94f5] to-[#e1e2ff] rounded-lg p-14 w-1/2"
+    >
+      <h4 class="text-center font-header2 text-white text-4xl font-bold mb-8">
+        Contact Form
+      </h4>
+      <form action="">
+        <div class="input-group w-full relative mb-6">
+          <label
+            class="absolute top-12 left-3 font-p text-3xl text-lightGray transition-all"
+            for="name">Name</label
+          >
+          <br />
+          <input
+            class="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-lightGray"
+            type="text"
+            id="name"
+            placeholder=" "
+            required
+          />
+        </div>
+        <div class="input-group w-full relative mb-6">
+          <label
+            class="absolute top-12 left-3 font-p text-3xl text-white transition-all"
+            for="email">Email</label
+          >
+          <br />
+          <input
+            class="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-white"
+            type="email"
+            id="email"
+            placeholder=" "
+            required
+          />
+        </div>
+
+        <div class="input-group w-full relative mb-6">
+          <label
+            class="absolute top-12 left-3 font-p text-3xl text-white transition-all"
+            for="phone">Telephone</label
+          >
+          <br />
+          <input
+            class="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-white"
+            type="number"
+            min="9"
+            pattern="^(\+1\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}$"
+            id="phone"
+            placeholder=" "
+          />
+        </div>
+
+        <div class="w-full mb-6">
+          <label class="top-12 left-3 font-p text-3xl text-white" for="subject"
+            >Subject</label
+          >
+          <br />
+          <select
+            class="w-full bg-transparent border-b-[1px] outline-none text-white border-lightGray"
+            name="subject"
+            id="subject"
+            required
+          >
+            <option value="job offer">Job offer</option>
+            <option value="business inquiry">Business inquiry</option>
+            <option value="collaboration">Collaboration</option>
+          </select>
+        </div>
+        <div class="w-full mb-6">
+          <label class="top-12 left-3 font-p text-3xl text-white" for="message"
+            >Message</label
+          >
+          <br />
+          <textarea class="w-full" id="message"></textarea>
+        </div>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div class="flex-1">
+      <h3>Get in touch</h3>
+      <p>Email: contact@uhernandez.com</p>
+      <p>Based on: Montreal, QC.</p>
+      <div>
+        <a
+          href="https://www.linkedin.com/in/uberth-hernandez-perez-31815b146/"
+          target="_blank"><Icon name="linkedin" /></a
+        >
+        <a href="https://github.com/Snipsx17" target="_blank"
+          ><Icon name="git" /></a
+        >
+      </div>
+    </div>
+  </div>
 </section>
+<style>
+  label {
+  }
+  .input-group:has(input:focus),
+  .input-group:not(:has(input:placeholder-shown)) {
+    label {
+      font-size: 12px;
+      top: 7px;
+      left: 10px;
+    }
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+</style>
