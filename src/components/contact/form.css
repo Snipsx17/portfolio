@@ -1,0 +1,18 @@
+.input-group:has(input:focus),
+.input-group:not(:has(input:placeholder-shown)) {
+  label {
+    font-size: 12px;
+    top: -10px;
+    left: 10px;
+  }
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
