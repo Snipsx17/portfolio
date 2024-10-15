@@ -48,3 +48,14 @@ import { Icon } from 'astro-icon/components';
     </div>
   </div>
 </section>
+<script>
+  import { actions } from 'astro:actions';
+  const form = document.querySelector('.contactForm');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target as HTMLFormElement);
+    console.log(form);
+    const { data, error } = await actions.sendForm(form);
+    // console.log({ data, error });
+  });
+</script>

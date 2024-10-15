@@ -1,8 +1,8 @@
-import React from 'react';
+import './form.css';
 
 export const Form = () => {
   return (
-    <form action="">
+    <form className="contactForm" action="">
       <div className="input-group w-full relative mb-6 pt-2">
         <label
           className="absolute top-4 left-3 font-p text-3xl text-lightGray transition-all"
@@ -15,6 +15,7 @@ export const Form = () => {
           className="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-lightGray"
           type="text"
           id="name"
+          name="name"
           placeholder=" "
           required
         />
@@ -30,6 +31,7 @@ export const Form = () => {
           className="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-white"
           type="email"
           id="email"
+          name="email"
           placeholder=" "
           required
         />
@@ -48,6 +50,7 @@ export const Form = () => {
           min="9"
           pattern="^(\+1\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}$"
           id="phone"
+          name="telephone"
           placeholder=" "
         />
       </div>
@@ -61,8 +64,8 @@ export const Form = () => {
         </label>
         <select
           className="w-full bg-transparent border-b-[1px] outline-none text-white border-lightGray px-3"
-          name="subject"
           id="subject"
+          name="subject"
           required
         >
           <option value="job offer">Job offer</option>
@@ -80,6 +83,7 @@ export const Form = () => {
         <textarea
           className="w-full outline-none text-white bg-transparent border-b-[1px] resize-none mb-6 px-3"
           id="message"
+          name="message"
           required
         ></textarea>
       </div>
