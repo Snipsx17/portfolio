@@ -9,16 +9,18 @@ import { Icon } from 'astro-icon/components';
   <h2 class="text-center font-header uppercase font-bold text-6xl pb-[80px]">
     contact
   </h2>
-  <div class="flex justify-center rounded-lg shadow-md w-[800px] m-auto">
+  <div
+    class="lg:flex justify-center rounded-lg shadow-md lg:w-[800px] md:w-4/5 m-auto"
+  >
     <div
-      class="relative flex-1 bg-gradient-to-b from-[#8a94f5] to-[#e1e2ff] rounded-lg p-14"
+      class="relative flex-1 bg-gradient-to-b from-[#8a94f5] to-[#e1e2ff] lg:rounded-s-lg p-14"
     >
       <h4 class="text-left font-header2 text-white text-4xl font-bold mb-12">
         Contact Form
       </h4>
       <Form client:load />
     </div>
-    <div class="flex-1 p-14">
+    <div class="flex-1 p-14 lg:rounded-e-lg">
       <h4
         class="font-header2 text-4xl font-bold text-left after:content-[' '] after:w-14 after:h-1 after:bg-black after:block after:mt-2"
       >
