@@ -1,8 +1,46 @@
+import { actions } from 'astro:actions';
+import { useEffect, useReducer, type ChangeEvent } from 'react';
+import { reducer, initState } from '@components/contact/reducer';
 import './form.css';
 
 export const Form = () => {
+  const [state, dispatch] = useReducer(reducer, {}, initState);
+  //   name: '',
+  //   email: '',
+  //   telephone: '',
+  //   subject: '',
+  //   message: '',
+  // });
+
+  // const [error, setError] = useState('');
+  // const [success, setSuccess] = useState('');
+
+  const onChangeHandler = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    dispatch({ type: 'SET_FORM', payload: e });
+  };
+
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = new FormData(e.target as HTMLFormElement);
+    const { data, error } = await actions.sendForm(form);
+    if (error) {
+      dispatch({ type: 'SET_ERROR' });
+      return;
+    }
+    dispatch({ type: 'SET_SUCCESS' });
+    return;
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.querySelector('.state-message')?.remove();
+    }, 3000);
+  }, [state.error, state.success]);
+
   return (
-    <form className="contactForm" action="">
+    <form className="contactForm" onSubmit={onSubmitHandler}>
       <div className="input-group w-full relative mb-6 pt-2">
         <label
           className="absolute top-4 left-3 font-p text-3xl text-lightGray transition-all"
@@ -16,10 +54,13 @@ export const Form = () => {
           type="text"
           id="name"
           name="name"
+          onChange={onChangeHandler}
+          value={state.form.name}
           placeholder=" "
           required
         />
       </div>
+
       <div className="input-group w-full relative mb-6 pt-2">
         <label
           className="absolute top-4 left-3 font-p text-3xl text-white transition-all"
@@ -32,6 +73,8 @@ export const Form = () => {
           type="email"
           id="email"
           name="email"
+          onChange={onChangeHandler}
+          value={state.form.email}
           placeholder=" "
           required
         />
@@ -51,6 +94,8 @@ export const Form = () => {
           pattern="^(\+1\s?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}$"
           id="phone"
           name="telephone"
+          onChange={onChangeHandler}
+          value={state.form.telephone}
           placeholder=" "
         />
       </div>
@@ -66,6 +111,8 @@ export const Form = () => {
           className="w-full bg-transparent border-b-[1px] outline-none text-white border-lightGray px-3"
           id="subject"
           name="subject"
+          value={state.form.subject}
+          onChange={onChangeHandler}
           required
         >
           <option value="job offer">Job offer</option>
@@ -73,6 +120,7 @@ export const Form = () => {
           <option value="collaboration">Collaboration</option>
         </select>
       </div>
+
       <div className="w-full mb-6">
         <label
           className="top-12 left-3 font-p text-xl text-white mb-8 px-3"
@@ -81,12 +129,26 @@ export const Form = () => {
           Message
         </label>
         <textarea
-          className="w-full outline-none text-white bg-transparent border-b-[1px] resize-none mb-6 px-3"
+          className="w-full outline-none text-white bg-transparent border-b-[1px] resize-none  px-3"
           id="message"
           name="message"
+          value={state.form.message}
+          onChange={onChangeHandler}
           required
         ></textarea>
       </div>
+
+      <div className="mb-6 h-8">
+        {state.success && (
+          <p className="state-message text-blue">✅ Message was send</p>
+        )}
+        {state.error && (
+          <p className="state-message text-red-600">
+            ❌ An error occurred, please try again
+          </p>
+        )}
+      </div>
+
       <button
         className="w-full border-blue hover:bg-blue border-2 text-blue hover:text-white rounded-3xl py-4 uppercase font-bold font-p shadow-md"
         type="submit"
