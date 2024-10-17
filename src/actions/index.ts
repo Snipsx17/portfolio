@@ -1,4 +1,4 @@
-import { defineAction } from 'astro:actions';
+import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { MailtrapClient } from 'mailtrap';
 
@@ -24,8 +24,8 @@ export const server = {
         email: SENDER_EMAIL,
       };
 
-      client
-        .send({
+      try {
+        await client.send({
           from: sender,
           to: [{ email: RECIPIENT_EMAIL }],
           template_uuid: import.meta.env.TEMPLATE_UUID,
@@ -36,9 +36,14 @@ export const server = {
             subject,
             message,
           },
-        })
-        .then(console.log)
-        .catch(console.error);
+        });
+        return { message: 'Message was send' };
+      } catch (error) {
+        throw new ActionError({
+          code: 'BAD_REQUEST',
+          message: 'Error',
+        });
+      }
     },
   }),
 };
