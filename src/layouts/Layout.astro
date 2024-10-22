@@ -19,28 +19,8 @@ import '../styles/main.css';
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <div class="overflow-hidden h-auto w-auto">
+      <slot />
+    </div>
   </body>
 </html>
-<style is:global>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-
-  html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-  }
-
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-
-  body {
-    font-size: 1.6rem;
-  }
-</style>
