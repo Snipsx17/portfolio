@@ -3,7 +3,10 @@ import NavLinks from './NavLinks.astro';
 ---
 
 <div class="hamburguer-menu flex items-center w-[40px] h-16 relative md:hidden">
-  <input class="absolute w-full h-full z-50 opacity-0" type="checkbox" />
+  <input
+    class="toggle-menu absolute w-full h-full z-50 opacity-0"
+    type="checkbox"
+  />
   <div
     class="menu-bar w-[40px] h-2 bg-black rounded-full transition-all duration-150 before:content-[''] before:absolute before:w-[40px] before:h-2 before:bg-black before:rounded-full before:-translate-y-5 before:transition-all before:duration-150 after:content-[''] after:absolute after:w-[40px] after:h-2 after:bg-black after:rounded-full after:translate-y-5 after:transition-all after:duration-150"
   >
@@ -18,17 +21,18 @@ import NavLinks from './NavLinks.astro';
 </div>
 
 <style>
-  .hamburguer-menu:has(input[type='checkbox']:not(:checked)) {
-    .menu {
-      transform: translateX(100vw);
-    }
+  .hamburguer-menu:has(input:not(:checked)) .menu {
+    transform: translateX(100vw);
+    -webkit-transform: translateX(100vw);
   }
 
-  .hamburguer-menu:has(input[type='checkbox']:checked) {
+  .hamburguer-menu:has(input:checked) {
     .menu-bar::before,
     .menu-bar::after {
       transition: transform 0.1s linear;
+      -webkit-transform: transform 0.1s linear;
       transform: translateY(0);
+      -webkit-transform: translateY(0);
     }
 
     .menu-bar {
