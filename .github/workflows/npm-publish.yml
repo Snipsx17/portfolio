@@ -1,0 +1,53 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Astro CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Gennerate private key
+        run: |
+          echo "${AWS_SECRET_KEY}" > key.pem
+          chmod 600 key.pem
+
+      - name: Gennerate .env file
+        run: |
+          echo "${secrets.VAR_ENV}" > .env
+          
+      - name: cache dependencies
+        uses: actions/cache@v4
+        id: cache-node-modules
+        with:
+          path: 'node_modules'
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json)}}
+          
+      - name: Install dependencies if cache not found
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: pnpm install
+        
+      - name: build app
+        run: pnpm astro build
+
+      - name: Sync files to server
+        run: |
+          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@34.236.84.152:/home/app/test/
+          
+     
+
