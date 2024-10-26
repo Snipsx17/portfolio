@@ -24,6 +24,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Generate private key
         run: |
           echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem
@@ -32,6 +35,17 @@ jobs:
       - name: Generate .env file
         run: |
           echo "${{ secrets.VAR_ENV }}" > .env
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: 'node_modules'
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies if cache not found
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: pnpm install
 
       - name: Build app
         run: pnpm astro build
