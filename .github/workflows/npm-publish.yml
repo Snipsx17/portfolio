@@ -52,6 +52,6 @@ jobs:
 
       - name: Sync files to server
         run: |
-          scp -i CD-CI.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@$34.236.84.152:/home/app/test/
+          scp -i CD-CI.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@34.236.84.152:/home/app/test/
           ssh -i CD-CI.pem -o StrictHostKeyChecking=no app@34.236.84.152 "source ~/.nvm/nvm.sh && cd /home/app/test && /home/app/.local/share/pnpm/pnpm install"
           ssh -i CD-CI.pem -o StrictHostKeyChecking=no app@34.236.84.152 "source ~/.nvm/nvm.sh && /home/app/.local/share/pnpm/pm2 restart uhernandez.com"
