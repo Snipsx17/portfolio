@@ -12,6 +12,7 @@ on:
       - main
 env:
   AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
+  SERVER_IP: ${{secrets.SERVER_IP}}
 
 jobs:
   build:
@@ -47,7 +48,7 @@ jobs:
 
       - name: Sync files to server
         run: |
-          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@34.236.84.152:/home/app/test/
+          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@${SERVER_IP}:/home/app/test/
           
      
 
