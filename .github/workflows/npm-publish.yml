@@ -29,8 +29,8 @@ jobs:
 
       - name: Generate private key
         run: |
-          echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem
-          chmod 600 key.pem
+          echo "${{ secrets.AWS_SECRET_KEY }}" > CD-CI.pem
+          chmod 400 CD-CI.pem
 
       - name: Generate .env file
         run: |
@@ -52,4 +52,4 @@ jobs:
 
       - name: Sync files to server
         run: |
-          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@${{ env.SERVER_IP }}:/home/app/test/
+          scp -i CD-CI.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@${{ env.SERVER_IP }}:/home/app/test/
