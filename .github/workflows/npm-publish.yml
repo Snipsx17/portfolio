@@ -10,45 +10,43 @@ on:
   pull_request:
     branches:
       - main
+
 env:
-  AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
-  SERVER_IP: ${{secrets.SERVER_IP}}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  SERVER_IP: ${{ secrets.SERVER_IP }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          
-      - name: Gennerate private key
+
+      - name: Generate private key
         run: |
-          echo "${AWS_SECRET_KEY}" > key.pem
+          echo "${{ secrets.AWS_SECRET_KEY }}" > key.pem
           chmod 600 key.pem
 
-      - name: Gennerate .env file
+      - name: Generate .env file
         run: |
-          echo "${secrets.VAR_ENV}" > .env
-          
-      - name: cache dependencies
-        uses: actions/cache@v4
+          echo "${{ secrets.VAR_ENV }}" > .env
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
         id: cache-node-modules
         with:
           path: 'node_modules'
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json)}}
-          
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies if cache not found
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: pnpm install
-        
-      - name: build app
+
+      - name: Build app
         run: pnpm astro build
 
       - name: Sync files to server
         run: |
-          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@${SERVER_IP}:/home/app/test/
-          
-     
-
+          scp -i key.pem -o StrictHostKeyChecking=no -r ./dist ./package.json app@${{ env.SERVER_IP }}:/home/app/test/
