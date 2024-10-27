@@ -1,19 +1,19 @@
 import { actions } from 'astro:actions';
-import { useEffect, useReducer, type ChangeEvent } from 'react';
+import {
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from 'react';
 import { reducer, initState } from '@components/contact/reducer';
+import ReCAPTCHA from 'react-google-recaptcha';
 import './form.css';
 
 export const Form = () => {
   const [state, dispatch] = useReducer(reducer, {}, initState);
-  //   name: '',
-  //   email: '',
-  //   telephone: '',
-  //   subject: '',
-  //   message: '',
-  // });
-
-  // const [error, setError] = useState('');
-  // const [success, setSuccess] = useState('');
+  const [isClient, setIsClient] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onChangeHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -23,21 +23,31 @@ export const Form = () => {
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.target as HTMLFormElement);
-    const { data, error } = await actions.sendForm(form);
-    if (error) {
-      dispatch({ type: 'SET_ERROR' });
+
+    if (recaptchaRef.current) {
+      const recaptchaToken = await recaptchaRef.current.executeAsync();
+
+      const form = new FormData(e.target as HTMLFormElement);
+      form.append('recaptchaToken', recaptchaToken as string);
+      const { data, error } = await actions.sendForm(form);
+      if (error) {
+        dispatch({ type: 'SET_ERROR' });
+        return;
+      }
+      dispatch({ type: 'SET_SUCCESS' });
       return;
     }
-    dispatch({ type: 'SET_SUCCESS' });
-    return;
   };
 
   useEffect(() => {
     setTimeout(() => {
-      document.querySelector('.state-message')?.remove();
+      dispatch({ type: 'RESET_ERROR' });
     }, 3000);
   }, [state.error, state.success]);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <form className="contactForm" onSubmit={onSubmitHandler}>
@@ -148,6 +158,14 @@ export const Form = () => {
           </p>
         )}
       </div>
+
+      {isClient && (
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey="6LdBMGsqAAAAAEhRzhQXSryid-hu7cCVHZms9qPM"
+          size="invisible"
+        />
+      )}
 
       <button
         className="w-full border-blue hover:bg-blue border-2 text-blue hover:text-white rounded-3xl py-4 uppercase font-bold font-p shadow-md"
