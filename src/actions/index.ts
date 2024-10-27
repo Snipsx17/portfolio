@@ -1,6 +1,7 @@
+import { sendEmail } from '@utils/sendEmail';
+import { validateCaptcha } from '@utils/validateCaptcha';
 import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
-import { MailtrapClient } from 'mailtrap';
 
 export const server = {
   sendForm: defineAction({
@@ -11,37 +12,41 @@ export const server = {
       telephone: z.string(),
       subject: z.string(),
       message: z.string(),
+      recaptchaToken: z.string(),
     }),
-    handler: async ({ name, email, telephone, subject, message }) => {
-      const TOKEN = import.meta.env.MAILTRAP_TOKEN;
-      const SENDER_EMAIL = import.meta.env.SENDER_EMAIL;
-      const RECIPIENT_EMAIL = import.meta.env.RECIPIENT_EMAIL;
+    handler: async ({
+      name,
+      email,
+      telephone,
+      subject,
+      message,
+      recaptchaToken,
+    }) => {
+      const captchaValidation = await validateCaptcha(recaptchaToken);
 
-      const client = new MailtrapClient({ token: TOKEN });
-
-      const sender = {
-        name: 'New message from UHERNANDEZ',
-        email: SENDER_EMAIL,
-      };
-
-      try {
-        await client.send({
-          from: sender,
-          to: [{ email: RECIPIENT_EMAIL }],
-          template_uuid: import.meta.env.TEMPLATE_UUID,
-          template_variables: {
-            name,
-            email,
-            telephone,
-            subject,
-            message,
-          },
-        });
-        return { message: 'Message was send' };
-      } catch (error) {
+      if (!captchaValidation.success || captchaValidation.score <= 0.5) {
+        console.error('Failed to verify reCAPTCHA score:', captchaValidation);
         throw new ActionError({
           code: 'BAD_REQUEST',
-          message: 'Error',
+          message: 'Failed to verify reCAPTCHA',
+        });
+      }
+
+      try {
+        const emailData = {
+          name,
+          email,
+          telephone,
+          subject,
+          message,
+          recipientEmail: import.meta.env.RECIPIENT_EMAIL,
+        };
+        await sendEmail(emailData);
+      } catch (error) {
+        console.error('Error sending email:', error);
+        throw new ActionError({
+          code: 'BAD_REQUEST',
+          message: 'Failed to send email',
         });
       }
     },
