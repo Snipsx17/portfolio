@@ -25,6 +25,10 @@ export const reducer = (
       };
     case 'SET_ERROR':
       return { ...state, error: true, success: false };
+    case 'RESET_ERROR':
+      return { ...state, error: false, success: false };
+    case 'RESET_STATE':
+      initState();
     default:
       return state;
   }
