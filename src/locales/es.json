@@ -10,6 +10,17 @@
   "hero": {
     "p1": "Desarrollador web con más de 2 años de experiencia. A lo largo de mi carrera he utilizado tecnologías como HTML, CSS, JavaScript, ReactJS, NodeJS, Express, MongoDB, PostgreSQL y WordPress. Como profesional busco mejorar constantemente, aprendiendo continuamente cosas nuevas para mejorar mis habilidades. Además, me apasionan las tecnologías DevOps y Cloud."
   },
+  "form": {
+    "name": "Nombre",
+    "email": "Email",
+    "telephone": "Telefono",
+    "subject": "Asunto",
+    "Job offer": "Oferta de empleo",
+    "Business inquiry": "Solicitud de presupuesto",
+    "Collaboration": "Colaboración",
+    "message": "Mensaje",
+    "submit": "Enviar"
+  },
   "download CV": "descargar CV",
   "projects": "proyectos",
   "experience": "experiencia",
