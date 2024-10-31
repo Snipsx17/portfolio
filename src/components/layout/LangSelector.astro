@@ -5,7 +5,7 @@
 </select>
 <script type="text/javascript">
   const url = location.origin;
-  const lang = (location.pathname + location.search).substr(1);
+  const lang = location.pathname.slice(1);
 
   const options = document.querySelectorAll('.lang-selector option');
   options.forEach((option) => {
