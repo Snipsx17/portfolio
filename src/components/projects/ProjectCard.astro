@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
 
 import img from '@images/search.png';
 
@@ -30,10 +32,14 @@ const { title, description, git, url, stack } = Astro.props;
       <h4 class="font-p font-bold mb-6">Stack: {stack}</h4>
       <div class="flex justify-evenly border-t-[1px] pt-6">
         <a href={git} target="_blank"
-          >Code <Icon class:list="inline" name="git" /></a
+          >{getTranslation(lang, 'Code')}<Icon
+            class:list="inline"
+            name="git"
+          /></a
         >
         <a href={url} target="_blank"
-          >Live Preview <Icon class:list="inline" name="link" /></a
+          >{getTranslation(lang, 'Live Preview')}
+          <Icon class:list="inline" name="link" /></a
         >
       </div>
     </div>

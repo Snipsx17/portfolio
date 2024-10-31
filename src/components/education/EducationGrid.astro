@@ -5,8 +5,14 @@ import EducationItem from './EducationItem.astro';
 
 type study = CollectionEntry<'studies'>;
 const studies: study[] = await getCollection('studies');
+const lang = Astro.url.pathname.split('/')[1] || 'en';
 ---
 
 <div class="lg:mx-48 mx-10">
-  {studies.map((educ) => <EducationItem education={educ} />)}
+  {
+    studies.map(
+      (educ) =>
+        educ.slug.split('/')[0] === lang && <EducationItem education={educ} />,
+    )
+  }
 </div>

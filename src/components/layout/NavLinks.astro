@@ -1,5 +1,20 @@
-<li class="nav-link"><a href="#about">about</a></li>
-<li class="nav-link"><a href="#projects">projects</a></li>
-<li class="nav-link"><a href="#experiences">experiences</a></li>
-<li class="nav-link"><a href="#education">education</a></li>
-<li class="nav-link"><a href="#contact">contact</a></li>
+---
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
+---
+
+<li class="nav-link">
+  <a href="#about">{getTranslation(lang, 'navlinks.about')}</a>
+</li>
+<li class="nav-link">
+  <a href="#projects">{getTranslation(lang, 'navlinks.projects')}</a>
+</li>
+<li class="nav-link">
+  <a href="#experiences">{getTranslation(lang, 'navlinks.experiences')}</a>
+</li>
+<li class="nav-link">
+  <a href="#education">{getTranslation(lang, 'navlinks.education')}</a>
+</li>
+<li class="nav-link">
+  <a href="#contact">{getTranslation(lang, 'navlinks.contact')}</a>
+</li>

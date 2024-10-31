@@ -1,10 +1,12 @@
 ---
 import ExperiencesGrid from './ExperiencesGrid.astro';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
 ---
 
 <section id="experiences" class="md:px-[90px] px-10 mb-[100px]">
   <h2 class="text-center font-header uppercase font-bold text-5xl pb-[80px]">
-    Experience
+    {getTranslation(lang, 'experience')}
   </h2>
   <ExperiencesGrid />
 </section>

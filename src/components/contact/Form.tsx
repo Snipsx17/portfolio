@@ -1,5 +1,6 @@
 import { actions } from 'astro:actions';
 import {
+  useCallback,
   useEffect,
   useReducer,
   useRef,
@@ -9,35 +10,43 @@ import {
 import { reducer, initState } from '@components/contact/reducer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import './form.css';
+import { getTranslation } from '../../i18n';
 
 export const Form = () => {
   const [state, dispatch] = useReducer(reducer, {}, initState);
   const [isClient, setIsClient] = useState(false);
+  const [lang, setLang] = useState('');
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
-  const onChangeHandler = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    dispatch({ type: 'SET_FORM', payload: e });
-  };
+  const onChangeHandler = useCallback(
+    (
+      e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    ) => {
+      dispatch({ type: 'SET_FORM', payload: e });
+    },
+    []
+  );
 
-  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitHandler = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    if (recaptchaRef.current) {
-      const recaptchaToken = await recaptchaRef.current.executeAsync();
+      if (recaptchaRef.current) {
+        const recaptchaToken = await recaptchaRef.current.executeAsync();
 
-      const form = new FormData(e.target as HTMLFormElement);
-      form.append('recaptchaToken', recaptchaToken as string);
-      const { data, error } = await actions.sendForm(form);
-      if (error) {
-        dispatch({ type: 'SET_ERROR' });
+        const form = new FormData(e.target as HTMLFormElement);
+        form.append('recaptchaToken', recaptchaToken as string);
+        const { data, error } = await actions.sendForm(form);
+        if (error) {
+          dispatch({ type: 'SET_ERROR' });
+          return;
+        }
+        dispatch({ type: 'SET_SUCCESS' });
         return;
       }
-      dispatch({ type: 'SET_SUCCESS' });
-      return;
-    }
-  };
+    },
+    []
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,6 +58,12 @@ export const Form = () => {
     setIsClient(true);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setLang(window.location.pathname.slice(1));
+    }
+  }, []);
+
   return (
     <form className="contactForm" onSubmit={onSubmitHandler}>
       <div className="input-group w-full relative mb-6 pt-2">
@@ -56,7 +71,7 @@ export const Form = () => {
           className="absolute top-4 left-3 font-p text-3xl text-lightGray transition-all"
           htmlFor="name"
         >
-          Name
+          {getTranslation(lang, 'form.name')}
         </label>
 
         <input
@@ -76,7 +91,7 @@ export const Form = () => {
           className="absolute top-4 left-3 font-p text-3xl text-white transition-all"
           htmlFor="email"
         >
-          Email
+          {getTranslation(lang, 'form.email')}
         </label>
         <input
           className="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-white"
@@ -95,7 +110,7 @@ export const Form = () => {
           className="absolute top-4 left-3 font-p text-3xl text-white transition-all"
           htmlFor="phone"
         >
-          Telephone
+          {getTranslation(lang, 'form.telephone')}
         </label>
         <input
           className="w-full bg-transparent border-b-[1px] border-lightGray outline-none py-2 px-4 text-white"
@@ -115,7 +130,7 @@ export const Form = () => {
           className="top-12 left-3 font-p text-xl text-white mb-8 px-3"
           htmlFor="subject"
         >
-          Subject
+          {getTranslation(lang, 'form.subject')}
         </label>
         <select
           className="w-full bg-transparent border-b-[1px] outline-none text-white border-lightGray px-3"
@@ -125,9 +140,15 @@ export const Form = () => {
           onChange={onChangeHandler}
           required
         >
-          <option value="job offer">Job offer</option>
-          <option value="business inquiry">Business inquiry</option>
-          <option value="collaboration">Collaboration</option>
+          <option value="job offer">
+            {getTranslation(lang, 'form.Job offer')}
+          </option>
+          <option value="business inquiry">
+            {getTranslation(lang, 'form.Business inquiry')}
+          </option>
+          <option value="collaboration">
+            {getTranslation(lang, 'form.Collaboration')}
+          </option>
         </select>
       </div>
 
@@ -136,7 +157,7 @@ export const Form = () => {
           className="top-12 left-3 font-p text-xl text-white mb-8 px-3"
           htmlFor="message"
         >
-          Message
+          {getTranslation(lang, 'form.message')}
         </label>
         <textarea
           className="w-full outline-none text-white bg-transparent border-b-[1px] resize-none  px-3"
@@ -171,7 +192,7 @@ export const Form = () => {
         className="w-full border-blue hover:bg-blue border-2 text-blue hover:text-white rounded-3xl py-4 uppercase font-bold font-p shadow-md"
         type="submit"
       >
-        Send
+        {getTranslation(lang, 'form.submit')}
       </button>
     </form>
   );
