@@ -1,0 +1,23 @@
+{
+  "navlinks": {
+    "about": "sobre mi",
+    "projects": "Proyectos",
+    "experiences": "experiencia",
+    "education": "educacion",
+    "contact": "contacto"
+  },
+  "Full Stack Developer 🚀": "Desarrollador Full Stack 🚀",
+  "hero": {
+    "p1": "Desarrollador web con más de 2 años de experiencia. A lo largo de mi carrera he utilizado tecnologías como HTML, CSS, JavaScript, ReactJS, NodeJS, Express, MongoDB, PostgreSQL y WordPress. Como profesional busco mejorar constantemente, aprendiendo continuamente cosas nuevas para mejorar mis habilidades. Además, me apasionan las tecnologías DevOps y Cloud."
+  },
+  "download CV": "descargar CV",
+  "projects": "proyectos",
+  "experience": "experiencia",
+  "education": "educación",
+  "contact": "contacto",
+  "contact Form": "formulario de contacto",
+  "get in touch": "ponte en contacto",
+  "contact Information": "información de contacto",
+  "based on: Montreal, QC": "Recidencia en: Montreal, QC.",
+  "Designed with ❤️ by Uberth Hernández": "Diseñado con ❤️ por Uberth Hernández"
+}
