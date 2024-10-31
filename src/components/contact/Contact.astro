@@ -3,11 +3,13 @@ import ButtonCV from '@components/layout/ButtonCV.astro';
 import { Form } from '@components/contact/Form';
 import RRSS from '@components/layout/RRSS.astro';
 import { Icon } from 'astro-icon/components';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
 ---
 
 <section id="contact" class="md:px-[100px] px-10 mb-[200px]">
   <h2 class="text-center font-header uppercase font-bold text-6xl pb-[80px]">
-    contact
+    {getTranslation(lang, 'contact')}
   </h2>
   <div
     class="lg:flex justify-center rounded-lg shadow-md lg:w-[800px] md:w-4/5 m-auto"
@@ -15,18 +17,22 @@ import { Icon } from 'astro-icon/components';
     <div
       class="relative flex-1 bg-gradient-to-b from-[#8a94f5] to-[#e1e2ff] lg:rounded-s-lg p-14"
     >
-      <h4 class="text-left font-header2 text-white text-4xl font-bold mb-12">
-        Contact Form
+      <h4
+        class="text-left font-header2 text-white text-4xl font-bold mb-12 capitalize"
+      >
+        {getTranslation(lang, 'contact Form')}
       </h4>
       <Form client:load />
     </div>
     <div class="flex-1 p-14 lg:rounded-e-lg">
       <h4
-        class="font-header2 text-4xl font-bold text-left after:content-[' '] after:w-14 after:h-1 after:bg-black after:block after:mt-2"
+        class="font-header2 text-4xl font-bold text-left after:content-[' '] after:w-14 after:h-1 after:bg-black after:block after:mt-2 capitalize"
       >
-        Get in touch
+        {getTranslation(lang, 'get in touch')}
       </h4>
-      <p class="mb-8 text-zinc-600">Contact Information.</p>
+      <p class="mb-8 text-zinc-600">
+        {getTranslation(lang, 'contact Information')}
+      </p>
       <div
         class="relative flex flex-col justify-between items-center h-[370px]"
       >
@@ -41,7 +47,9 @@ import { Icon } from 'astro-icon/components';
             <span class="p-6 rounded-full border-[1px] border-zinc-300">
               <Icon name="location" />
             </span>
-            <p class="font-p text-2xl">Based on: Montreal, QC.</p>
+            <p class="font-p text-2xl">
+              {getTranslation(lang, 'based on: Montreal, QC')}
+            </p>
           </div>
           <ButtonCV background="#fff" />
         </div>

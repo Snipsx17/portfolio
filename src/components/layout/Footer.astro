@@ -1,12 +1,16 @@
 ---
 import ButtonCV from './ButtonCV.astro';
 import RRSS from './RRSS.astro';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
 ---
 
 <footer class="flex gap-6 items-center justify-evenly p-4 bg-lightBlue">
   <div class="hidden md:inline">
     <ButtonCV background="#D8ECFF" />
   </div>
-  <p class="font-header2 text-3xl">Designed with ❤️ by Uberth Hernández</p>
+  <p class="font-header2 text-3xl">
+    {getTranslation(lang, 'Designed with ❤️ by Uberth Hernández')}
+  </p>
   <RRSS />
 </footer>

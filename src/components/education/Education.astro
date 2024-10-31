@@ -1,5 +1,7 @@
 ---
 import EducationGrid from './EducationGrid.astro';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '../../i18n';
 ---
 
 <section
@@ -7,7 +9,7 @@ import EducationGrid from './EducationGrid.astro';
   class="md:px-[90px] py-16 mx-4 md:mx-20 px-10 mb-[100px] bg-lightGray"
 >
   <h2 class="text-center font-header uppercase font-bold text-5xl pb-[60px]">
-    Education
+    {getTranslation(lang, 'education')}
   </h2>
   <EducationGrid />
 </section>
