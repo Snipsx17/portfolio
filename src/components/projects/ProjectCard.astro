@@ -4,17 +4,16 @@ import { Icon } from 'astro-icon/components';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../i18n';
 
-import img from '@images/search.png';
-
 interface Props {
   title: string;
   description: string;
+  image: string;
   git: string;
   url: string;
   stack: string;
 }
 
-const { title, description, git, url, stack } = Astro.props;
+const { title, description, image, git, url, stack } = Astro.props;
 ---
 
 <div
@@ -22,7 +21,7 @@ const { title, description, git, url, stack } = Astro.props;
 >
   <div>
     <div class="relative h-[160px] w-[300x] rounded-2xl overflow-hidden mb-6">
-      <Image class="w-full h-full object-cover" src={img} alt="project" />
+      <img class="w-full h-full object-cover" src={`/${image}`} alt="project" />
     </div>
     <div>
       <h3 class="font-header2 font-bold text-4xl mb-6">{title}</h3>
@@ -32,7 +31,7 @@ const { title, description, git, url, stack } = Astro.props;
       <h4 class="font-p font-bold mb-6">Stack: {stack}</h4>
       <div class="flex justify-evenly border-t-[1px] pt-6">
         <a href={git} target="_blank"
-          >{getTranslation(lang, 'Code')}<Icon
+          >{getTranslation(lang, 'Code ')}<Icon
             class:list="inline"
             name="git"
           /></a

@@ -4,19 +4,20 @@ import ProjectCard from './ProjectCard.astro';
 import { getCollection } from 'astro:content';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 
-type project = CollectionEntry<'studies'>;
+type project = CollectionEntry<'projects'>;
 
-const allBlogPosts = await getCollection('projects');
+const projects: project[] = await getCollection('projects');
 ---
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
   {
-    allBlogPosts.map(
+    projects.map(
       (project) =>
         project.slug.split('/')[0] === lang && (
           <ProjectCard
             title={project.data.title}
             description={project.data.description}
+            image={project.data.image}
             git={project.data.git}
             url={project.data.url}
             stack={project.data.stack}
