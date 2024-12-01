@@ -36,13 +36,17 @@ export const Form = () => {
 
         const form = new FormData(e.target as HTMLFormElement);
         form.append('recaptchaToken', recaptchaToken as string);
-        const { data, error } = await actions.sendForm(form);
-        if (error) {
-          dispatch({ type: 'SET_ERROR' });
+        try {
+          const { data, error } = await actions.sendForm(form);
+          if (error) {
+            dispatch({ type: 'SET_ERROR' });
+            return;
+          }
+          dispatch({ type: 'SET_SUCCESS' });
           return;
+        } catch (error) {
+          dispatch({ type: 'SET_ERROR' });
         }
-        dispatch({ type: 'SET_SUCCESS' });
-        return;
       }
     },
     []

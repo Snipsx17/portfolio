@@ -39,7 +39,7 @@ export const server = {
           telephone,
           subject,
           message,
-          recipientEmail: import.meta.env.RECIPIENT_EMAIL,
+          recipientEmail: [import.meta.env.RECIPIENT_EMAIL],
         };
         await sendEmail(emailData);
       } catch (error) {
