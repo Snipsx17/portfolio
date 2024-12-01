@@ -7,9 +7,7 @@
     "contact": "contacto"
   },
   "Full Stack Developer 🚀": "Desarrollador Full Stack 🚀",
-  "hero": {
-    "p1": "Desarrollador web con más de 2 años de experiencia. A lo largo de mi carrera he utilizado tecnologías como HTML, CSS, JavaScript, ReactJS, NodeJS, Express, MongoDB, PostgreSQL y WordPress. Como profesional busco mejorar constantemente, aprendiendo continuamente cosas nuevas para mejorar mis habilidades. Además, me apasionan las tecnologías DevOps y Cloud."
-  },
+  "hero": "Desarrollador web full-stack dinámico con sede en Montreal, experto en React, Node.js, Express, MongoDB y PostgreSQL, además de soluciones en la nube serverless en AWS y Azure. Con más de 4 años de experiencia en desarrollo web, infraestructura en la nube y entornos de servidores Linux/Windows. Apasionado por el DevOps, el trabajo en equipo y la resolución innovadora de problemas, con sólidas habilidades de adaptabilidad, comunicación y liderazgo. Comprometido con el aprendizaje continuo y motivado por la capacidad de contribuir a equipos multidisciplinarios, fomentando la colaboración y alcanzando objetivos comunes.",
   "form": {
     "name": "Nombre",
     "email": "Email",
