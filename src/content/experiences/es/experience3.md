@@ -1,7 +1,7 @@
 ---
 title: 'Desarrollador web freelance'
 address: 'España.'
-date: '2021 - 2022'
+date: '2021 - Presente'
 description:
   [
     'Desarrollo de sitios web para empresas, principalmente utilizando el marco ASTRO, ReactJS y WordPress.',

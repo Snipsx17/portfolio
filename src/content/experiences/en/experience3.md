@@ -1,7 +1,7 @@
 ---
 title: 'Freelance web developer'
 address: 'Spain.'
-date: '2021 - 2022'
+date: '2021 - Present'
 description:
   [
     'Develop websites for businesses, primarily using the ASTRO framework, ReactJS, and WordPress.',
