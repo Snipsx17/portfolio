@@ -1,21 +1,17 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Hero from '@components/Hero.astro';
-import NavBar from '@components/layout/NavBar.astro';
 import Stack from '@components/stack-carrousel/Stack.astro';
 import Projects from '@components/projects/Projects.astro';
 import Experiences from '@components/experiences/Experiences.astro';
 import Education from '@components/education/Education.astro';
 import Contact from '@components/contact/Contact.astro';
 import Footer from '@components/layout/Footer.astro';
-const lang = Astro.url.pathname.split('/')[1] || 'en';
-import { getTranslation } from '../../i18n';
+import Header from '@components/layout/Header.astro';
 ---
 
 <Layout title="Uberth Hernandez">
-  <NavBar />
-  <main class="mt-[-90px]">
-    <Hero />
+  <Header />
+  <main>
     <Stack />
     <Projects />
     <Experiences />
