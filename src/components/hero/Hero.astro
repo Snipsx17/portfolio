@@ -1,10 +1,10 @@
 ---
 import Developer from '@images/developer.svg';
 
-import Cloud from '@components/layout/Cloud.astro';
+import Cloud from '@components/hero/Cloud.astro';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
-import { getTranslation } from '../i18n';
-import ButtonCV from './layout/ButtonCV.astro';
+import { getTranslation } from '@utils/i18n';
+import ButtonCV from '@components/layout/ButtonCV.astro';
 ---
 
 <div
@@ -26,5 +26,5 @@ import ButtonCV from './layout/ButtonCV.astro';
     {getTranslation(lang, 'hero')}
   </p>
 
-  <ButtonCV background="#fcfcff" />
+  <ButtonCV lang={lang} />
 </div>
