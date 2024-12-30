@@ -1,7 +1,11 @@
-export const CloseButton = ({ toggleMenu }: { toggleMenu: () => void }) => {
+export const CloseButton = ({
+  onClickHandler,
+}: {
+  onClickHandler: () => void;
+}) => {
   return (
     <button
-      onClick={toggleMenu}
+      onClick={onClickHandler}
       aria-label="Close Menu"
       className="absolute top-4 right-4 text-gray-800 [&_svg]:size-16"
     >

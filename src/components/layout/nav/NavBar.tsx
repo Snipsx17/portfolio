@@ -8,9 +8,11 @@ import { CloseButton } from './CloseButton';
 import { NavLogo } from './NavLogo';
 import { HamburguerButton } from './HamburguerButton';
 import { Overlay } from './Overlay';
+import { actualLanguage } from '@nanoStore/globalState';
 
 const NavBar = ({ lang }: { lang: string }) => {
   const [isOpen, setIsOpen] = useState(true);
+  actualLanguage.set(lang);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -31,13 +33,13 @@ const NavBar = ({ lang }: { lang: string }) => {
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex space-x-6">
-            <NavLinks lang={lang} />
+            <NavLinks />
             <LangSelector />
           </nav>
 
           {/* Download CV button */}
           <div className="hidden lg:flex">
-            <ButtonCV lang={lang} />
+            <ButtonCV />
           </div>
         </div>
       </div>
@@ -52,10 +54,10 @@ const NavBar = ({ lang }: { lang: string }) => {
         )}
       >
         {/* Close Button */}
-        <CloseButton toggleMenu={toggleMenu} />
+        <CloseButton onClickHandler={toggleMenu} />
 
         {/* Sidebar Links */}
-        <Sidebar lang={lang} />
+        <Sidebar />
       </div>
     </>
   );

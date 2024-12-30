@@ -1,8 +1,11 @@
 import { Download } from 'lucide-react';
 import { getTranslation } from '@utils/i18n';
 import { Button } from '@components/ui/button';
+import { useStore } from '@nanostores/react';
+import { actualLanguage } from '@nanoStore/globalState';
 
-export const ButtonCV = ({ lang }: { lang: string }) => {
+export const ButtonCV = () => {
+  const lang = useStore(actualLanguage);
   return (
     <Button variant={'downloadCv'} size={'lg'} asChild>
       <a

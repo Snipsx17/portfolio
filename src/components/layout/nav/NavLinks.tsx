@@ -6,6 +6,8 @@ import {
   CircleUserRound,
 } from 'lucide-react';
 import { getTranslation } from '@utils/i18n';
+import { useStore } from '@nanostores/react';
+import { actualLanguage } from '@nanoStore/globalState';
 
 const links = [
   { name: 'navlinks.about', href: '#about', icon: <UserRound size={20} /> },
@@ -31,7 +33,9 @@ const links = [
   },
 ];
 
-export const NavLinks = ({ lang }: { lang: string }) => {
+export const NavLinks = () => {
+  const lang = useStore(actualLanguage);
+
   return (
     <ul className="flex-col lg:flex lg:flex-row gap-6 items-center capitalize font-normal">
       {links.map((link, index) => (
