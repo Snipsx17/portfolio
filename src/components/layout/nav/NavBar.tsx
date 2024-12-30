@@ -33,7 +33,7 @@ const NavBar = ({ lang }: { lang: string }) => {
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex space-x-6">
-            <NavLinks />
+            <NavLinks onClickHandler={toggleMenu} />
             <LangSelector />
           </nav>
 
@@ -57,7 +57,11 @@ const NavBar = ({ lang }: { lang: string }) => {
         <CloseButton onClickHandler={toggleMenu} />
 
         {/* Sidebar Links */}
-        <Sidebar />
+        <Sidebar>
+          <NavLinks onClickHandler={toggleMenu} />
+          <LangSelector />
+          <ButtonCV />
+        </Sidebar>
       </div>
     </>
   );

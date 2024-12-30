@@ -33,7 +33,11 @@ const links = [
   },
 ];
 
-export const NavLinks = () => {
+export const NavLinks = ({
+  onClickHandler,
+}: {
+  onClickHandler: () => void;
+}) => {
   const lang = useStore(actualLanguage);
 
   return (
@@ -41,6 +45,7 @@ export const NavLinks = () => {
       {links.map((link, index) => (
         <a
           key={index}
+          onClick={onClickHandler}
           className="flex gap-3 p-3 border-box border-2 border-transparent rounded-lg hover:scale-105 hover:border-blue/20 hover:bg-lightBlue/20  transition-all duration-300"
           href={link.href}
         >
