@@ -1,10 +1,10 @@
 ---
-import ButtonCV from '@components/layout/ButtonCV.astro';
+import { ButtonCV } from '@components/layout/ButtonCV';
 import { Form } from '@components/contact/Form';
 import RRSS from '@components/layout/RRSS.astro';
 import { Icon } from 'astro-icon/components';
+import { getTranslation } from '../../utils/i18n';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
-import { getTranslation } from '../../i18n';
 ---
 
 <section id="contact" class="md:px-[100px] px-10 mb-[200px]">
@@ -51,7 +51,7 @@ import { getTranslation } from '../../i18n';
               {getTranslation(lang, 'based on: Montreal, QC')}
             </p>
           </div>
-          <ButtonCV background="#fff" />
+          <ButtonCV lang={lang} />
         </div>
         <RRSS />
       </div>
