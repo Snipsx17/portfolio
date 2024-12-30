@@ -8,7 +8,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@images/*": ["src/images/*"],
       "@utils/*": ["src/utils/*"],
-      "@locales/*": ["src/locales/*"]
+      "@locales/*": ["src/locales/*"],
+      "@nanoStore/*": ["src/nanoStore/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
