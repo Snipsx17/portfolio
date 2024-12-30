@@ -24,7 +24,7 @@ export const LangSelector = () => {
   return (
     <select
       onChange={onSelectorChange}
-      className="lang-selector bg-transparent outline-none font-bold"
+      className="lang-selector bg-transparent outline-none font-bold cursor-pointer"
     >
       {langOptions.map((option) => (
         <option
