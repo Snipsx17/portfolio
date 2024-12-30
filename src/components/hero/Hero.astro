@@ -1,15 +1,14 @@
 ---
 import Developer from '@images/developer.svg';
-
 import Cloud from '@components/hero/Cloud.astro';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '@utils/i18n';
-import ButtonCV from '@components/layout/ButtonCV.astro';
+import { ButtonCV } from '@components/layout/ButtonCV';
 ---
 
 <div
   id="about"
-  class="relative flex flex-col h-[800px] items-center pt-[250px] mb-56 lg:px-[300px] px-20"
+  class="relative flex flex-col items-center pt-[250px] mb-56 lg:px-[300px] px-20 z-30"
 >
   <div class="relative mb-16">
     <Cloud text={getTranslation(lang, 'Full Stack Developer 🚀')} />

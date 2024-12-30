@@ -10,7 +10,7 @@ import {
 import { reducer, initState } from '@components/contact/reducer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import './form.css';
-import { getTranslation } from '../../i18n';
+import { getTranslation } from '../../utils/i18n';
 
 export const Form = () => {
   const [state, dispatch] = useReducer(reducer, {}, initState);

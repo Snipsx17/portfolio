@@ -3,18 +3,10 @@ import { cn } from '@components/lib/utils';
 import { Button } from '@components/ui/button';
 import Logo from '@images/logo.svg';
 import { NavLinks } from '@components/layout/nav/NavLinks';
-import { Download } from 'lucide-react';
-import { getTranslation } from 'src/i18n';
-
-const ButtonText = ({ lang }: { lang: string }) => (
-  <a
-    href="CV_Uberth_Hernandez.pdf"
-    target="_blank"
-    className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-2xl font-p focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-6 [&_svg]:shrink-0 bg-blue text-p font-3xl text-white font-bold hover:bg-blue/80 h-16 rounded-xl px-8 hover:scale-105 transition-all duration-300"
-  >
-    <Download /> {getTranslation(lang, 'download CV')}
-  </a>
-);
+import { LangSelector } from './LangSelector';
+import { ButtonCV } from '../ButtonCV';
+import { Sidebar } from './Sidebar';
+import { CloseButton } from './CloseButton';
 
 const NavBar = ({ lang }: { lang: string }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -68,25 +60,25 @@ const NavBar = ({ lang }: { lang: string }) => {
           {/* Desktop Menu */}
           <nav className="hidden lg:flex space-x-6">
             <NavLinks lang={lang} />
+            <LangSelector />
           </nav>
 
           {/* Download CV button */}
           <div className="hidden lg:flex">
-            <Button variant={'downloadCv'} asChild>
-              <ButtonText lang={lang} />
-            </Button>
+            <ButtonCV lang={lang} />
           </div>
         </div>
       </div>
 
       {/* Mobile Sidebar */}
       <div
+        id="overlay"
         className={cn(
-          'inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden',
-          isOpen ? 'opacity-0 hidden' : 'opacity-100 pointer-events-none fixed'
+          'inset-0 bg-black/50 transition-opacity duration-300 lg:hidden',
+          isOpen ? 'opacity-0 hidden' : 'opacity-100 fixed z-40'
         )}
         onClick={toggleMenu}
-      />
+      ></div>
 
       <div
         className={cn(
@@ -95,34 +87,10 @@ const NavBar = ({ lang }: { lang: string }) => {
         )}
       >
         {/* Close Button */}
-        <button
-          onClick={toggleMenu}
-          aria-label="Close Menu"
-          className="absolute top-4 right-4 text-gray-800 [&_svg]:size-16"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-24 h-24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+        <CloseButton toggleMenu={toggleMenu} />
 
         {/* Sidebar Links */}
-        <nav className="mt-8 space-y-4">
-          <NavLinks lang={lang} />
-          <Button variant={'downloadCv'} asChild>
-            <ButtonText lang={lang} />
-          </Button>
-        </nav>
+        <Sidebar lang={lang} />
       </div>
     </>
   );

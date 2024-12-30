@@ -5,7 +5,7 @@ import {
   GraduationCap,
   CircleUserRound,
 } from 'lucide-react';
-import { getTranslation } from 'src/i18n';
+import { getTranslation } from '@utils/i18n';
 
 const links = [
   { name: 'navlinks.about', href: '#about', icon: <UserRound size={20} /> },
@@ -33,7 +33,7 @@ const links = [
 
 export const NavLinks = ({ lang }: { lang: string }) => {
   return (
-    <ul className="flex-col lg:flex lg:flex-row gap-12 items-center capitalize font-normal">
+    <ul className="flex-col lg:flex lg:flex-row gap-6 items-center capitalize font-normal">
       {links.map((link, index) => (
         <a
           key={index}
