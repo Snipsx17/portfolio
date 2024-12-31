@@ -1,0 +1,82 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+const images = await Object.values(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '/src/images/stack/*.{jpeg,jpg,png,gif}',
+    {
+      eager: true,
+    },
+  ),
+);
+---
+
+<div class="logos">
+  <div class="logos-slide">
+    {images.map((img) => <img src={img.default.src} alt="logo" />)}
+  </div>
+</div>
+
+<style>
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-400%);
+    }
+  }
+
+  .logos {
+    display: flex;
+    gap: 800px;
+    overflow: hidden;
+    padding: 60px 0;
+    background: white;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .logos:before,
+  .logos:after {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    content: '';
+    z-index: 2;
+  }
+
+  .logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  .logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+
+  .logos:hover .logos-slide {
+    animation-play-state: paused;
+  }
+
+  .logos-slide {
+    animation: 60s slide infinite linear;
+    display: flex;
+  }
+
+  .logos-slide img {
+    height: 50px;
+    width: fit-content;
+    margin: 0 20px;
+  }
+</style>
+
+<script>
+  const copy = document.querySelector('.logos-slide') as HTMLElement;
+  const logos = document.querySelector('.logos') as HTMLElement;
+  logos.appendChild(copy.cloneNode(true));
+  logos.appendChild(copy.cloneNode(true));
+</script>
