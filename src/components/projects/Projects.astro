@@ -5,8 +5,11 @@ import { getTranslation } from '../../utils/i18n';
 ---
 
 <section id="projects" class="md:px-[100px] px-10 mb-[100px]">
-  <h2 class="text-center font-header uppercase font-bold text-6xl pb-[80px]">
-    {getTranslation(lang, 'projects')}
+  <h2 class="text-center font-header capitalize font-bold text-6xl mb-6">
+    {getTranslation(lang, 'featured projects')}
   </h2>
+  <p class="font-p text-center mb-28 text-slate-600">
+    {getTranslation(lang, 'Check out some of my recent work')}
+  </p>
   <ProjectsGrid />
 </section>
