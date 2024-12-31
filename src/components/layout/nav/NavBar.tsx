@@ -22,9 +22,9 @@ const NavBar = ({ lang }: { lang: string }) => {
     <>
       <div
         aria-label="Global"
-        className="flex items-center justify-evenly lg:px-8 header-animate backdrop-blur-[10px] md:backdrop-blur-0 w-full mb-10 overflow-visible z-40 py-10"
+        className="flex justify-center px-10 md:px-20 lg:px-28 header-animate backdrop-blur-[10px] md:backdrop-blur-0 w-full mb-10 overflow-visible z-40 py-10"
       >
-        <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        <div className="flex flex-1 justify-between py-4">
           {/* Logo */}
           <NavLogo />
 
