@@ -1,18 +1,18 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Stack from '@components/stack-carrousel/Stack.astro';
 import Projects from '@components/projects/Projects.astro';
 import Experiences from '@components/experiences/Experiences.astro';
 import Education from '@components/education/Education.astro';
 import Contact from '@components/contact/Contact.astro';
 import Footer from '@components/layout/Footer.astro';
 import Header from '@components/layout/Header.astro';
+import InfiniteCarrousel from '@components/stack-carrousel/InfiniteCarrousel.astro';
 ---
 
 <Layout title="Uberth Hernandez">
   <Header />
   <main>
-    <Stack />
+    <InfiniteCarrousel />
     <Projects />
     <Experiences />
     <Education />
