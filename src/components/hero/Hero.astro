@@ -1,29 +1,35 @@
 ---
-import Developer from '@images/developer.svg';
-import Cloud from '@components/hero/Cloud.astro';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '@utils/i18n';
 import { ButtonCV } from '@components/layout/ButtonCV';
+import HeroImage from './HeroImage.astro';
+import { Button } from '@components/ui/button';
+import { Github } from 'lucide-react';
 ---
 
-<div
-  id="about"
-  class="relative flex flex-col items-center pt-[250px] mb-56 lg:px-[300px] px-20 z-30"
+<section
+  class="relative h-screen flex flex-col-reverse md:flex-row items-center justify-center mb-56 z-30"
 >
-  <div class="relative mb-16">
-    <Cloud text={getTranslation(lang, 'Full Stack Developer 🚀')} />
-    <img src={Developer.src} alt="Stack" width="200" />
+  <!-- TEXT -->
+  <div class="md:basis-1/2 text-center md:text-left">
+    <h3 class="text-4xl mb-3 text-slate-600">Uberth Hernandez</h3>
+    <h1 class="font-header font-bold text-6xl md:text-6xl lg:text-8xl mt-0">
+      {getTranslation(lang, 'Full-stack Web Developer 🚀')}
+    </h1>
+    <p class="hidden sm:block leading-10 text-3xl font-p text-slate-600 pb-16">
+      {getTranslation(lang, 'hero')}
+    </p>
+    <div class="flex flex-col gap-4 sm:block">
+      <ButtonCV />
+      <Button variant={'github'} size={'lg'}>
+        <Github />
+        Checkout repo
+      </Button>
+    </div>
   </div>
-  <h1
-    class="font-header uppercase font-bold text-4xl sm:text-5xl lg:pb-5 pb-10"
-  >
-    Uberth Hernández
-  </h1>
-  <p
-    class="hidden lg:block text-2xl sm:text-3xl leading-relaxed font-p text-gray pb-16"
-  >
-    {getTranslation(lang, 'hero')}
-  </p>
 
-  <ButtonCV lang={lang} />
-</div>
+  <!-- IMAGE -->
+  <div class="relative mb-16 flex items-center justify-center md:basis-1/2">
+    <HeroImage />
+  </div>
+</section>
