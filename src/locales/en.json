@@ -6,8 +6,8 @@
     "education": "education",
     "contact": "contact"
   },
-  "Full Stack Developer 🚀": "Full Stack Developer 🚀",
-  "hero": "Dynamic full-stack web developer based in Montreal, skilled in React, Node.js, Express, MongoDB, and PostgreSQL, and serverless cloud solutions on AWS and Azure. With over 4 years of experience in web development, cloud infrastructure, and Linux/Windows Server environments. Passionate about DevOps, teamwork, and innovative problem-solving, with strong adaptability, communication, and leadership skills. Continuously learning and driven by the ability to contribute to multidisciplinary teams while fostering collaboration and achieving shared goals.",
+  "Full-stack Web Developer 🚀": "Full-stack Web Developer 🚀",
+  "hero": "Proficient in React, Node.js, Express, MongoDB, PostgreSQL, and serverless cloud solutions on AWS. Passionate about web technologies, collaborative teamwork, and solving complex problems with innovative approaches.",
   "form": {
     "name": "Name",
     "email": "Email",
