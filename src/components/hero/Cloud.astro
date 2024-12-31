@@ -7,7 +7,7 @@ const { text } = Astro.props;
 ---
 
 <div
-  class="cloud absolute lg:right-[-60%] right-[-40%] lg:top-[50%] bg-white rounded-xl text-center drop-shadow-md py-3 px-6 rotate-[-17deg]"
+  class="cloud absolute right-[-30%] bg-white rounded-xl text-center drop-shadow-md py-3 px-6 rotate-[-17deg]"
 >
   <p class="font-p lg:text-xl text-[10px]">{text}</p>
 </div>
@@ -18,13 +18,13 @@ const { text } = Astro.props;
 
   @keyframes floating {
     0% {
-      top: 50%;
+      top: 10%;
     }
     50% {
-      top: 60%;
+      top: 20%;
     }
     100% {
-      top: 50%;
+      top: 10%;
     }
   }
 </style>

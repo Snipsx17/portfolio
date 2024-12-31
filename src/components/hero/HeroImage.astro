@@ -1,0 +1,15 @@
+---
+import Developer from '@images/developer.svg';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+import { getTranslation } from '@utils/i18n';
+import Cloud from './Cloud.astro';
+---
+
+<div class="relative">
+  <Cloud text={getTranslation(lang, 'Full Stack Developer 🚀')} />
+  <img
+    src={Developer.src}
+    alt="Stack"
+    class="w-[200px] md:w-[300px] lg:w-[350px]"
+  />
+</div>
