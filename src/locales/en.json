@@ -20,7 +20,8 @@
     "submit": "Submit"
   },
   "download CV": "Download CV",
-  "projects": "projects",
+  "featured projects": "featured projects",
+  "Check out some of my recent work": "Check out some of my recent work.",
   "experience": "experience",
   "education": "education",
   "contact": "contact",
@@ -29,6 +30,6 @@
   "contact Information": "Contact Information.",
   "based on: Montreal, QC": "Based on: Montreal, QC.",
   "Designed with ❤️ by Uberth Hernández": "Designed with ❤️ by Uberth Hernández",
-  "Code": "Code",
-  "Live Preview": "Live Preview"
+  "code": "Code",
+  "preview": "Preview"
 }

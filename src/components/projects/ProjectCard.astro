@@ -1,7 +1,16 @@
 ---
-import { Icon } from 'astro-icon/components';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@components/ui/card';
+import { Badge } from '@components/ui/badge';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
+import { Button } from '@components/ui/button';
+import { Github, Send } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -15,31 +24,46 @@ interface Props {
 const { title, description, image, git, url, stack } = Astro.props;
 ---
 
-<div
-  class="p-10 shadow-[0px_0px_20px_10px_rgba(150,150,150,0.1)] rounded-2xl hover:scale-105 transition-all"
->
-  <div>
-    <div class="relative h-[160px] w-[300x] rounded-2xl overflow-hidden mb-6">
-      <img class="w-full h-full object-cover" src={`/${image}`} alt="project" />
+<Card>
+  <CardHeader>
+    <img src={image} alt={title} class="mb-3 rounded-md h-[180px]" />
+    <CardTitle className="font-header text-4xl">{title}</CardTitle>
+  </CardHeader>
+  <CardContent className="max-h-44 min-h-44 px-6 py-0">
+    <div class="overflow-hidden">
+      <p class="mb-4 text-3xl line-clamp-2">{description}</p>
     </div>
-    <div>
-      <h3 class="font-header2 font-bold text-4xl mb-6">{title}</h3>
-      <p class="font-p text-3xl line-clamp-2 mb-6 text-gray/70">
-        {description}
-      </p>
-      <h4 class="font-p font-bold mb-6">Stack: {stack}</h4>
-      <div class="flex justify-evenly border-t-[1px] pt-6">
-        <a href={git} target="_blank"
-          >{getTranslation(lang, 'Code ')}<Icon
-            class:list="inline"
-            name="git"
-          /></a
-        >
-        <a href={url} target="_blank"
-          >{getTranslation(lang, 'Live Preview')}
-          <Icon class:list="inline" name="link" /></a
-        >
-      </div>
+    <small class="font-p font-semibold">Stack:</small>
+    <div class="flex gap-2 mt-2">
+      {
+        stack.split(',').map((tec) => (
+          <Badge variant={'secondary'} className="text-lg">
+            {tec}
+          </Badge>
+        ))
+      }
     </div>
-  </div>
-</div>
+  </CardContent>
+
+  <CardFooter
+    className=" grid grid-cols-2 gap-4 content-center justify-items-center pt-6"
+  >
+    <Button variant={'link'} size={'lg'} asChild>
+      <a
+        href={url}
+        class="w-full bg-black text-white text-center p-4 rounded-lg text-2xl font-p hover:scale-105 transition-transform duration-300"
+        ><Github size="15" className="inline" />
+        {getTranslation(lang, 'code')} Code</a
+      >
+    </Button>
+    <Button variant={'link'} size={'lg'} asChild>
+      <a
+        href={url}
+        class="w-full border border-black text-center p-4 rounded-lg text-2xl font-p hover:scale-105 transition-transform duration-300"
+      >
+        <Send size="15" className="inline" />
+        {getTranslation(lang, 'preview')}
+      </a>
+    </Button>
+  </CardFooter>
+</Card>

@@ -9,7 +9,9 @@ type project = CollectionEntry<'projects'>;
 const projects: project[] = await getCollection('projects');
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 justify-start"
+>
   {
     projects.map(
       (project) =>

@@ -1,6 +1,5 @@
 ---
 import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
 
 const images = await Object.values(
   import.meta.glob<{ default: ImageMetadata }>(
@@ -12,7 +11,7 @@ const images = await Object.values(
 );
 ---
 
-<div class="logos">
+<div class="logos mb-20">
   <div class="logos-slide">
     {images.map((img) => <img src={img.default.src} alt="logo" />)}
   </div>
