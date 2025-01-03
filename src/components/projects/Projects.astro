@@ -4,7 +4,7 @@ const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
 ---
 
-<section id="projects" class="md:px-[100px] px-10 mb-[100px]">
+<section id="projects" class="mb-[100px]">
   <h2 class="text-center font-header capitalize font-bold text-6xl mb-6">
     {getTranslation(lang, 'featured projects')}
   </h2>

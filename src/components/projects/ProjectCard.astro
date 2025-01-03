@@ -7,10 +7,8 @@ import {
   CardTitle,
 } from '@components/ui/card';
 import { Badge } from '@components/ui/badge';
-import { Icon } from 'astro-icon/components';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
-import { start } from 'dist/server/_@astrojs-ssr-adapter.mjs';
 import { Button } from '@components/ui/button';
 import { Github, Send } from 'lucide-react';
 
@@ -36,27 +34,36 @@ const { title, description, image, git, url, stack } = Astro.props;
       <p class="mb-4 text-3xl line-clamp-2">{description}</p>
     </div>
     <small class="font-p font-semibold">Stack:</small>
-    <div class="flex gap-2">
+    <div class="flex gap-2 mt-2">
       {
-        stack
-          .split(',')
-          .map((tec) => <Badge variant={'pillStack'}>{tec}</Badge>)
+        stack.split(',').map((tec) => (
+          <Badge variant={'secondary'} className="text-lg">
+            {tec}
+          </Badge>
+        ))
       }
     </div>
   </CardContent>
-  <hr />
+
   <CardFooter
-    className=" grid grid-cols-2 content-center justify-items-center pt-6"
+    className=" grid grid-cols-2 gap-4 content-center justify-items-center pt-6"
   >
     <Button variant={'link'} size={'lg'} asChild>
-      <a href={url} class="hover:scale-105 transition-transform duration-300"
-        ><Github className="inline" /> Code</a
+      <a
+        href={url}
+        class="w-full bg-black text-white text-center p-4 rounded-lg text-2xl font-p hover:scale-105 transition-transform duration-300"
+        ><Github size="15" className="inline" />
+        {getTranslation(lang, 'code')} Code</a
       >
     </Button>
     <Button variant={'link'} size={'lg'} asChild>
-      <a href={url} class="hover:scale-105 transition-transform duration-300">
-        <Send className="inline " /> Preview</a
+      <a
+        href={url}
+        class="w-full border border-black text-center p-4 rounded-lg text-2xl font-p hover:scale-105 transition-transform duration-300"
       >
+        <Send size="15" className="inline" />
+        {getTranslation(lang, 'preview')}
+      </a>
     </Button>
   </CardFooter>
 </Card>

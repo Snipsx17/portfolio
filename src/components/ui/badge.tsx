@@ -16,7 +16,7 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80',
         outline: 'text-foreground',
         pillStack:
-          'border-transparent bg-blueSecondary text-lg text-white shadow hover:bg-primary/80',
+          'border-transparent bg-black text-lg text-white shadow hover:bg-primary/80',
       },
     },
     defaultVariants: {
