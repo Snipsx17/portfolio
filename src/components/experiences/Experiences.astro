@@ -4,9 +4,17 @@ const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
 ---
 
-<section id="experiences" class="md:px-[90px] px-10 mb-[100px]">
-  <h2 class="text-center font-header uppercase font-bold text-5xl pb-[80px]">
-    {getTranslation(lang, 'experience')}
+<section id="experiences" class="mb-[100px]">
+  <h2 class="text-center font-header capitalize font-bold text-6xl mb-6">
+    {getTranslation(lang, 'word experience')}
   </h2>
+  <p class="font-p text-center mb-28 text-slate-600">
+    {
+      getTranslation(
+        lang,
+        'check out my professional journey and the valuable experience',
+      )
+    }
+  </p>
   <ExperiencesGrid />
 </section>
