@@ -44,8 +44,9 @@ export const ContactForm = ({ lang }: { lang: string }) => {
 
   const onSubmit = useCallback(async (values: z.infer<typeof formSchema>) => {
     setIsFetching(true);
-    const recaptchaToken = await (recaptchaRef.current &&
-      recaptchaRef.current.executeAsync());
+    const recaptchaToken = recaptchaRef.current
+      ? await recaptchaRef.current.executeAsync()
+      : '';
 
     try {
       const { error } = await actions.sendForm({
@@ -53,18 +54,18 @@ export const ContactForm = ({ lang }: { lang: string }) => {
         recaptchaToken,
       });
       if (error) {
-        throw new Error(error);
+        throw new Error(error.message);
       }
 
       toast({
-        description: '✅ Your message has been sent.',
+        description: getTranslation(lang, 'form.success message'),
       });
       form.reset();
       setIsFetching(false);
       return;
     } catch (error) {
       toast({
-        description: '❌ Message not sent, please try again.',
+        description: getTranslation(lang, 'form.error message'),
       });
       setIsFetching(false);
     }

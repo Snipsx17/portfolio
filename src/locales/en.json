@@ -18,7 +18,9 @@
     "Collaboration": "Collaboration",
     "message": "Message",
     "Enter your message here": "Enter your message here...",
-    "submit": "Submit"
+    "submit": "Submit",
+    "success message": "✅ Your message has been sent.",
+    "error message": "❌ Message not sent, please try again."
   },
   "download CV": "Download CV",
   "featured projects": "featured projects",
