@@ -3,14 +3,27 @@ import { ButtonCV } from '@components/layout/ButtonCV';
 import RRSS from './RRSS.astro';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
+import { Separator } from '@components/ui';
 ---
 
-<footer class="flex gap-6 items-center justify-evenly p-4 bg-lightBlue">
-  <div class="hidden md:inline">
-    <ButtonCV lang={lang} />
+<footer class="px-8">
+  <Separator />
+  <div class="flex gap-6 items-center justify-around py-4">
+    <div>
+      <p class="font-header2 text-2xl text-zinc-600">
+        {getTranslation(lang, 'Designed with ❤️ by')}
+        <a
+          href="https://www.linkedin.com/in/uberth-hernandez-perez-31815b146/"
+          class="hover:text-zinc-500">Uberth Hernández</a
+        >
+      </p>
+    </div>
+    <div class="flex items-center">
+      <div class="hidden md:inline">
+        <ButtonCV />
+      </div>
+
+      <RRSS />
+    </div>
   </div>
-  <p class="font-header2 text-3xl">
-    {getTranslation(lang, 'Designed with ❤️ by Uberth Hernández')}
-  </p>
-  <RRSS />
 </footer>
