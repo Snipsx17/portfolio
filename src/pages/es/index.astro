@@ -7,11 +7,12 @@ import Contact from '@components/contact/Contact.astro';
 import Footer from '@components/layout/Footer.astro';
 import Header from '@components/layout/Header.astro';
 import InfiniteCarrousel from '@components/stack-carrousel/InfiniteCarrousel.astro';
+import { Toaster } from '@components/ui';
 ---
 
 <Layout title="Uberth Hernandez">
   <Header />
-  <main>
+  <main class="px-10 md:px-20 lg:px-28">
     <InfiniteCarrousel />
     <Projects />
     <Experiences />
@@ -19,4 +20,5 @@ import InfiniteCarrousel from '@components/stack-carrousel/InfiniteCarrousel.ast
     <Contact />
   </main>
   <Footer />
+  <Toaster client:load />
 </Layout>
