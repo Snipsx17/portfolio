@@ -1,58 +1,56 @@
 ---
 import { ButtonCV } from '@components/layout/ButtonCV';
 import { Form } from '@components/contact/Form';
+import { ContactForm } from '@components/contact/ContactForm';
 import RRSS from '@components/layout/RRSS.astro';
 import { Icon } from 'astro-icon/components';
 import { getTranslation } from '../../utils/i18n';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 ---
 
-<section id="contact" class="md:px-[100px] px-10 mb-[200px]">
-  <h2 class="text-center font-header uppercase font-bold text-6xl pb-[80px]">
+<section id="contact" class="mb-[200px]">
+  <h2 class="text-center font-header uppercase font-bold text-6xl mb-6">
     {getTranslation(lang, 'contact')}
   </h2>
-  <div
-    class="lg:flex justify-center rounded-lg shadow-md lg:w-[800px] md:w-4/5 m-auto"
-  >
-    <div
-      class="relative flex-1 bg-gradient-to-b from-[#8a94f5] to-[#e1e2ff] lg:rounded-s-lg p-14"
-    >
-      <h4
-        class="text-left font-header2 text-white text-4xl font-bold mb-12 capitalize"
-      >
-        {getTranslation(lang, 'contact Form')}
-      </h4>
-      <Form client:load />
+  <p class="font-p capitalize text-center mb-28 text-slate-600">
+    {getTranslation(lang, 'get in touch')}
+  </p>
+  <div class="md:w-[600px] justify-center rounded-lg shadow-xl m-auto">
+    <div class="relative lg:rounded-s-lg md:p-14">
+      <ContactForm client:load lang={lang} />
     </div>
-    <div class="flex-1 p-14 lg:rounded-e-lg">
+
+    <div class="p-14 lg:rounded-e-lg">
       <h4
-        class="font-header2 text-4xl font-bold text-left after:content-[' '] after:w-14 after:h-1 after:bg-black after:block after:mt-2 capitalize"
+        class="font-header2 text-4xl font-bold text-left after:content-[' '] after:w-14 after:h-1 after:bg-black after:block after:mt-2 capitalize mb-4"
       >
-        {getTranslation(lang, 'get in touch')}
-      </h4>
-      <p class="mb-8 text-zinc-600">
         {getTranslation(lang, 'contact Information')}
-      </p>
-      <div
-        class="relative flex flex-col justify-between items-center h-[370px]"
-      >
-        <div class="text-center">
+      </h4>
+
+      <div class="relative text-center">
+        <div class="md:grid md:grid-cols-2 gap-6 text-center my-8">
           <div class="flex items-center gap-6 mb-6">
             <span class="p-6 rounded-full border-[1px] border-zinc-300">
               <Icon name="email" />
             </span>
-            <p class="font-p text-2xl">Email: contact@uhernandez.com</p>
+            <div>
+              <p class="font-p text-2xl">Email:</p>
+              <p>contact@uhernandez.com</p>
+            </div>
           </div>
-          <div class="flex items-center gap-6 mb-12">
+          <div class="flex items-center gap-6 mb-6">
             <span class="p-6 rounded-full border-[1px] border-zinc-300">
               <Icon name="location" />
             </span>
-            <p class="font-p text-2xl">
-              {getTranslation(lang, 'based on: Montreal, QC')}
-            </p>
+            <div>
+              <p class="font-p text-2xl">
+                {getTranslation(lang, 'based on:')}
+              </p>
+              <p>Montreal, QC</p>
+            </div>
           </div>
-          <ButtonCV lang={lang} />
         </div>
+        <ButtonCV />
         <RRSS />
       </div>
     </div>
