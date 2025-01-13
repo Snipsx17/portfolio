@@ -3,7 +3,7 @@ import Logo from '@images/logo.svg';
 export const NavLogo = () => {
   return (
     <div>
-      <a className="basis-2/3 md:basis-3/4" href="/">
+      <a className="basis-2/3 md:basis-3/4 cursor-pointer" href="/">
         <img
           src={Logo.src}
           alt="Logo"

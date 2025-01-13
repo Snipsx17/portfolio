@@ -1,10 +1,11 @@
 ---
 import Hero from '@components/hero/Hero.astro';
-import NavBar from './nav/NavBar';
+
+import Navbar from './nav/NavBar';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 ---
 
 <header class="relative font-p text-3xl bg-transparent">
-  <NavBar lang={lang} client:load />
+  <Navbar client:load lang={lang} />
   <Hero />
 </header>
