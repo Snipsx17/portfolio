@@ -1,0 +1,17 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Footer from '@components/layout/Footer.astro';
+import NavBar from '@components/layout/nav/NavBar';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
+interface Props {
+  pageTitle: string;
+}
+
+const { pageTitle } = Astro.props;
+---
+
+<Layout title={pageTitle}>
+  <NavBar lang={lang} client:load />
+  <slot />
+</Layout>
+<Footer />
