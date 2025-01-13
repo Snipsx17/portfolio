@@ -1,0 +1,50 @@
+---
+import BlogLayout from './BlogLayout.astro';
+import { ArrowLeft } from 'lucide-react';
+import { AspectRatio } from '@components/ui/aspect-ratio';
+import { UserAvatar } from '@components/blog/UserAvatar';
+import ShareButtons from '@components/blog/ShareButtons.astro';
+import PostHeader from '@components/blog/PostHeader.astro';
+
+interface Props {
+  frontmatter: any;
+}
+const { frontmatter } = Astro.props;
+
+const postUrl = Astro.url;
+---
+
+<BlogLayout pageTitle={frontmatter.title}>
+  <main
+    class="m-auto min-h-dvh grid grid-rows-[1fr_auto] mx-[20px] md:mx-[100px]"
+  >
+    <section class="mt-[150px] md:mt-[120px]">
+      <article>
+        <PostHeader frontmatter={frontmatter} />
+        <main
+          class="my-16 md:my-24 grid md:grid-cols-[250px_auto_250px] font-p text-3xl leading-[30px]"
+        >
+          <section class="text-left mb-6">
+            <ShareButtons urlToShare={postUrl.href} />
+          </section>
+          <section>
+            <div
+              class="prose text-3xl max-w-full prose-p:mb-8 prose-p:text-3xl"
+            >
+              <slot />
+              <footer>
+                <ShareButtons urlToShare={postUrl.href} />
+              </footer>
+            </div>
+          </section>
+          <section></section>
+        </main>
+      </article>
+    </section>
+  </main>
+</BlogLayout>
+<style>
+  p {
+    margin-bottom: 30px;
+  }
+</style>

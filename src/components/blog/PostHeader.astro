@@ -1,0 +1,47 @@
+---
+import { ArrowLeft } from 'lucide-react';
+import { UserAvatar } from './UserAvatar';
+import { AspectRatio } from '@radix-ui/react-aspect-ratio';
+
+interface Props {
+  frontmatter: any;
+}
+
+const { frontmatter } = Astro.props;
+const postDate = new Date(frontmatter.pubDate);
+const formattedPublishDate = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}).format(postDate);
+---
+
+<div>
+  <aside class="flex flex-col md:flex-row mb-16">
+    <div class="w-[200px] md:w-[200px] mb-4">
+      <a
+        href="/blog"
+        class="flex justify-start gap-4 items-center font-p text-slate-500"
+      >
+        <ArrowLeft className="w-10" />
+        <span>All posts</span>
+      </a>
+    </div>
+    <div>
+      <span class="font-p text-zinc-500">
+        Published {formattedPublishDate}
+      </span>
+      <h1 class="font-header text-6xl md:text-8xl my-16 font-semibold">
+        {frontmatter.title}
+      </h1>
+      <UserAvatar userName={frontmatter.author} size="lg" client:load />
+    </div>
+  </aside>
+  <AspectRatio ratio={19 / 9}>
+    <img
+      src={frontmatter.image.url}
+      alt={frontmatter.image.alt}
+      class="w-full h-full flex items-center content-center object-cover"
+    />
+  </AspectRatio>
+</div>
