@@ -1,0 +1,32 @@
+---
+import { PostCard } from '@components/blog/PostCard';
+import { TagList } from '@components/blog/TagList';
+import { Separator } from '@components/ui';
+import BlogLayout from '@layouts/BlogLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+
+const tags = [...new Set(posts.map(({ data }) => data.tags).flat())];
+---
+
+<BlogLayout pageTitle="Blog | Uberth Hernandez">
+  <section id="blog" class="min-h-dvh grid grid-rows-[1fr_auto]">
+    <main
+      class="lg:grid lg:grid-cols-[200px_auto] col-auto gap-20 mt-[120px] px-10 md:px-20 lg:px-28"
+    >
+      <aside class="row-span-1 mb-6 lg:border-r">
+        <h3 class="font-header2 text-5xl font-bold mb-4">
+          A web developer <br /><span class="font-serif font-light"
+            >journey</span
+          >
+        </h3>
+        <Separator className="mb-4 lg:w-20" />
+        <TagList tags={tags} />
+      </aside>
+      <section class="grid md:grid-cols-2 gap-12">
+        {posts.map(({ data: post }) => <PostCard post={post} client:load />)}
+      </section>
+    </main>
+  </section>
+</BlogLayout>
