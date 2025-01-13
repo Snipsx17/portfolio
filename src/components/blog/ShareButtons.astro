@@ -1,6 +1,4 @@
 ---
-import { Linkedin, Twitter, X } from 'lucide-react';
-
 interface Props {
   urlToShare: string;
 }
@@ -14,7 +12,7 @@ const { urlToShare } = Astro.props;
     <div>
       <a
         class="text-zinc-500"
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${urlToShare}
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=https://uhernandez.com${urlToShare}
 `}
         ><svg
           class="shareLinkedIn"
@@ -31,7 +29,7 @@ const { urlToShare } = Astro.props;
     <div>
       <a
         class="text-zinc-500"
-        href={`http://twitter.com/share?text=titulo&url=${urlToShare}
+        href={`http://twitter.com/share?text=titulo&url=https://uhernandez.com${urlToShare}
 `}
         ><svg
           class="shareX"
@@ -46,7 +44,7 @@ const { urlToShare } = Astro.props;
     <div>
       <a
         class="text-zinc-500"
-        href={`mailto:?body=5 must-have templates for your team%0A${urlToShare}&amp;subject=5 must-have templates for your team
+        href={`mailto:?body=5 must-have templates for your team%0Ahttps://uhernandez.com${urlToShare}&amp;subject=5 must-have templates for your team
 `}
         ><svg
           class="shareEmail"
