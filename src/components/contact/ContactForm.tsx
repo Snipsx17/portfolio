@@ -45,7 +45,7 @@ export const ContactForm = ({ lang }: { lang: string }) => {
   const onSubmit = useCallback(async (values: z.infer<typeof formSchema>) => {
     setIsFetching(true);
     const recaptchaToken = recaptchaRef.current
-      ? await recaptchaRef.current.executeAsync()
+      ? (await recaptchaRef.current.executeAsync()) || ''
       : '';
 
     try {

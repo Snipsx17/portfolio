@@ -10,7 +10,7 @@ export const formSchema = z.object({
       message: 'Name should not exceed 30 characters.',
     }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  telephone: z.optional(z.string()),
+  telephone: z.string(),
   subject: z.string({ message: 'Subject is required.' }),
   message: z
     .string()

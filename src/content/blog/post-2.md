@@ -8,7 +8,7 @@ profession: 'Fullstack developer'
 image:
   url: 'https://i.ibb.co/84D1rrft/mono-repo.png" alt="How to Create a Monorepo with PNPM'
   alt: 'How to Create a Monorepo with PNPM"'
-tags: ['frontend', 'backend', 'web', 'CI/CD']
+tags: ['frontend', 'backend', 'web']
 ---
 
 # 🏗️ How to Create a Monorepo with PNPM

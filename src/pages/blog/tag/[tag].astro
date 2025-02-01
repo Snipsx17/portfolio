@@ -22,7 +22,6 @@ export async function getStaticPaths() {
   });
 }
 const { posts, uniqueTags: tags } = Astro.props;
-const { tag } = Astro.params;
 ---
 
 <BlogLayout pageTitle="Blog | Uberth Hernandez">
