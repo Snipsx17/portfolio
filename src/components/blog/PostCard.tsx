@@ -21,7 +21,7 @@ export const PostCard = ({ post }: { post: Post }) => {
       <a href={`blog/post/${post.title.toLowerCase().split(' ').join('-')}`}>
         <AspectRatio ratio={16 / 9}>
           <img
-            src={post.image.url}
+            src={post.image.url.split(' ')[0]}
             alt={post.image.alt}
             className="w-full h-full flex items-center content-center object-cover rounded-md"
           />
