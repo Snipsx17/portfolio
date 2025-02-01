@@ -1,8 +1,10 @@
 ---
 interface Props {
   title: string;
+  image?: string;
+  description?: string;
 }
-const { title } = Astro.props;
+const { title, image, description } = Astro.props;
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import '../styles/main.css';
 ---
@@ -15,7 +17,14 @@ import '../styles/main.css';
       name="description"
       content="Portfolio Uberth Hernandez web developer."
     />
+
     <meta name="viewport" content="width=device-width" />
+    <meta property="og:image" content={image} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content={title} />
+    <meta name="twitter:image" content={image} />
+
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 

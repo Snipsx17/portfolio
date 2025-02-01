@@ -1,16 +1,25 @@
 ---
 import { PostCard } from '@components/blog/PostCard';
 import { TagList } from '@components/blog/TagList';
+import Navbar from '@components/layout/nav/NavBar';
 import { Separator } from '@components/ui';
-import BlogLayout from '@layouts/BlogLayout.astro';
+import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
 
 const posts = await getCollection('blog');
 
 const tags = [...new Set(posts.map(({ data }) => data.tags).flat())];
+const description =
+  'welcome to A Web Developer Journey! This blog is a space where I’ll share my journey as a web developer, exploring technologies, tools, and key topics in the software development world. My goal is to learn, grow, and most importantly, take you along with me on this exciting path filled with challenges and opportunities.';
 ---
 
-<BlogLayout pageTitle="Blog | Uberth Hernandez">
+<Layout
+  title="Blog | Uberth Hernandez"
+  description={description}
+  image="https://i.ibb.co/5Mb3dxx/una-imagen-para-mi-blog-que-se.jpg"
+>
+  <Navbar lang={lang} client:load />
   <section id="blog" class="min-h-dvh grid grid-rows-[1fr_auto]">
     <main
       class="lg:grid lg:grid-cols-[200px_auto] col-auto gap-20 mt-[120px] px-10 md:px-20 lg:px-28"
@@ -33,4 +42,4 @@ const tags = [...new Set(posts.map(({ data }) => data.tags).flat())];
       </section>
     </main>
   </section>
-</BlogLayout>
+</Layout>

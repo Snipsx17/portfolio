@@ -1,7 +1,10 @@
 ---
-import BlogLayout from './BlogLayout.astro';
 import ShareButtons from '@components/blog/ShareButtons.astro';
 import PostHeader from '@components/blog/PostHeader.astro';
+import Navbar from '@components/layout/nav/NavBar';
+import Layout from './Layout.astro';
+import Footer from '@components/layout/Footer.astro';
+const lang = Astro.url.pathname.split('/')[1] || 'en';
 
 interface Props {
   frontmatter: any;
@@ -9,10 +12,15 @@ interface Props {
 const { frontmatter } = Astro.props;
 
 const postUrl = Astro.url;
-console.log(postUrl.pathname);
+console.log(frontmatter.image.url.split(' ')[0]);
 ---
 
-<BlogLayout pageTitle={frontmatter.title}>
+<Layout
+  title={frontmatter.title}
+  image={frontmatter.image.url.split(' ')[0]}
+  description={frontmatter.description}
+>
+  <Navbar lang={lang} client:load />
   <main
     class="m-auto min-h-dvh grid grid-rows-[1fr_auto] mx-[20px] md:mx-[100px]"
   >
@@ -40,7 +48,8 @@ console.log(postUrl.pathname);
       </article>
     </section>
   </main>
-</BlogLayout>
+  <Footer />
+</Layout>
 <style>
   p {
     margin-bottom: 30px;
