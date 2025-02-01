@@ -18,7 +18,7 @@ interface Post {
 export const PostCard = ({ post }: { post: Post }) => {
   return (
     <article className="lg:p-4 flex flex-col gap-4">
-      <a href={`post/${post.title.toLowerCase().split(' ').join('-')}`}>
+      <a href={`blog/post/${post.title.toLowerCase().split(' ').join('-')}`}>
         <AspectRatio ratio={16 / 9}>
           <img
             src={post.image.url}

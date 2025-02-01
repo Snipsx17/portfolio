@@ -25,7 +25,11 @@ const tags = [...new Set(posts.map(({ data }) => data.tags).flat())];
         <TagList tags={tags} />
       </aside>
       <section class="grid md:grid-cols-2 gap-12">
-        {posts.map(({ data: post }) => <PostCard post={post} client:load />)}
+        {
+          posts.map(({ data: post, id }) => (
+            <PostCard post={post} client:load />
+          ))
+        }
       </section>
     </main>
   </section>
