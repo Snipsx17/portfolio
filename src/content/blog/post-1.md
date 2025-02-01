@@ -1,5 +1,5 @@
 ---
-title: 'Welcome to "A Web Developer Journey"'
+title: 'Welcome to A Web Developer Journey'
 subtitle: 'First post'
 pubDate: 2025-01-13
 description: 'Hello everyone, and welcome to A Web Developer Journey! This blog is a space where I’ll share my journey as a web developer, exploring technologies, tools, and key topics in the software development world. My goal is to learn, grow, and most importantly, take you along with me on this exciting path filled with challenges and opportunities.'
