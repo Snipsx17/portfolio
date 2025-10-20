@@ -19,7 +19,6 @@ import {
 } from '@components/ui';
 import { useToast } from '@components/hooks/use-toast';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
 import { actions } from 'astro:actions';
 import { formSchema } from './formSchema';
 import { Loader2, Mail } from 'lucide-react';
@@ -28,8 +27,9 @@ import { getTranslation } from '@utils/i18n';
 export const ContactForm = ({ lang }: { lang: string }) => {
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
+  const [ReCAPTCHA, setReCAPTCHA] = useState<any>(null);
   const { toast } = useToast();
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef<any>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -73,6 +73,9 @@ export const ContactForm = ({ lang }: { lang: string }) => {
 
   useEffect(() => {
     setIsClient(true);
+    import('react-google-recaptcha').then((module) => {
+      setReCAPTCHA(module.default);
+    });
   }, []);
 
   return (
@@ -196,7 +199,7 @@ export const ContactForm = ({ lang }: { lang: string }) => {
           {getTranslation(lang, 'form.submit')}
         </Button>
 
-        {isClient && (
+        {isClient && ReCAPTCHA && (
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey="6LdBMGsqAAAAAEhRzhQXSryid-hu7cCVHZms9qPM"
