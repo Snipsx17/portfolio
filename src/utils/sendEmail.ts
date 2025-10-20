@@ -1,5 +1,6 @@
 import { createTransport } from 'nodemailer';
 import { emailTemplate } from 'src/email/template';
+import { SENDER_EMAIL, GOOGLE_PASSWORD } from 'astro:env/server';
 
 interface Props {
   name: string;
@@ -18,8 +19,6 @@ export const sendEmail = async ({
   message,
   recipientEmail,
 }: Props) => {
-  const SENDER_EMAIL = import.meta.env.SENDER_EMAIL;
-  const GOOGLE_PASSWORD = import.meta.env.GOOGLE_PASSWORD;
 
   const transport = createTransport({
     service: 'gmail',

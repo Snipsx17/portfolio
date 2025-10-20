@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
 } from '@components/ui/accordion';
 import type { CollectionEntry } from 'astro:content';
-import { Dot, Icon } from 'lucide-react';
 type experience = CollectionEntry<'experiences'>;
 
 export const Experience = ({ experience }: { experience: experience }) => {

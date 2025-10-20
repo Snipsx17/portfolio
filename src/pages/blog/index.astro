@@ -35,7 +35,7 @@ const description =
       </aside>
       <section class="grid md:grid-cols-2 gap-12">
         {
-          posts.map(({ data: post, id }) => (
+          posts.map(({ data: post }) => (
             <PostCard post={post} client:load />
           ))
         }

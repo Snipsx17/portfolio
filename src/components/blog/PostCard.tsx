@@ -1,10 +1,9 @@
 import { AspectRatio } from '@components/ui/aspect-ratio';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { UserAvatar } from './UserAvatar';
 interface Post {
   title: string;
   subtitle: string;
-  pubDate: string;
+  pubDate: Date;
   description: string;
   author: string;
   profession: string;

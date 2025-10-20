@@ -10,7 +10,7 @@ import { Badge } from '@components/ui/badge';
 const lang = Astro.url.pathname.split('/')[1] || 'en';
 import { getTranslation } from '../../utils/i18n';
 import { Button } from '@components/ui/button';
-import { Github, Send } from 'lucide-react';
+import { GitBranch as Github, Send } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -50,7 +50,7 @@ const { title, description, image, git, url, stack } = Astro.props;
   >
     <Button variant={'link'} size={'lg'} asChild>
       <a
-        href={url}
+        href={git}
         class="w-full bg-black text-white text-center p-4 rounded-lg text-2xl font-p hover:scale-105 transition-transform duration-300"
         ><Github size="15" className="inline" />
         {getTranslation(lang, 'code')} Code</a
