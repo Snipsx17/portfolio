@@ -93,7 +93,7 @@ jobs:
           docker run -d \
             --name portfolio \
             -p 4321:4321 \
-            --env-file /home/snipsx17/.env \
+            --env-file /home/snipsx17/uhernandez.com/.env \
             --restart unless-stopped \
             $ECR_REGISTRY/$ECR_REPOSITORY:latest
           
