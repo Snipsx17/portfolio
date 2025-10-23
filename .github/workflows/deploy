@@ -1,0 +1,121 @@
+name: Build and Deploy to EC2
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+
+jobs:
+  build-and-push:
+    name: Build and Push to ECR
+    runs-on: ubuntu-latest
+    
+    outputs:
+      image-tag: ${{ steps.build.outputs.tag }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Build and push multi-platform image
+      id: build
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        echo "🔨 Building multi-platform image..."
+        
+        docker buildx build \
+          --platform linux/amd64,linux/arm64 \
+          --tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          --tag $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+          --push \
+          .
+        
+        echo "✅ Image pushed successfully!"
+        echo "tag=$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Deploy to EC2
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          set -e
+          
+          ECR_REGISTRY="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com"
+          ECR_REPOSITORY="${{ env.ECR_REPOSITORY }}"
+          IMAGE_TAG="${{ needs.build-and-push.outputs.image-tag }}"
+          
+          echo "🚀 Desplegando imagen: $IMAGE_TAG"
+          
+          # Autenticar en ECR
+          echo "🔐 Autenticando en ECR..."
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} | \
+            docker login --username AWS --password-stdin $ECR_REGISTRY
+          
+          # Pull de la imagen
+          echo "📥 Descargando imagen..."
+          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          
+          # Detener y eliminar contenedor anterior
+          echo "🛑 Deteniendo contenedor anterior..."
+          docker stop portfolio 2>/dev/null || true
+          docker rm portfolio 2>/dev/null || true
+          
+          # Ejecutar nuevo contenedor
+          echo "🔄 Iniciando nuevo contenedor..."
+          docker run -d \
+            --name portfolio \
+            -p 4321:4321 \
+            --env-file /home/snipsx17/.env \
+            --restart unless-stopped \
+            $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          
+          # Esperar a que inicie
+          sleep 5
+          
+          # Verificar que está corriendo
+          if docker ps | grep -q portfolio; then
+            echo "✅ Contenedor iniciado correctamente"
+          else
+            echo "❌ Error: El contenedor no está corriendo"
+            docker logs portfolio
+            exit 1
+          fi
+          
+          # Limpiar imágenes antiguas
+          echo "🧹 Limpiando imágenes antiguas..."
+          docker image prune -f
+          
+          echo "✅ Deploy completado!"
+          echo "📊 Estado:"
+          docker ps | grep portfolio
+          echo ""
+          echo "📝 Logs recientes:"
+          docker logs --tail 20 portfolio
