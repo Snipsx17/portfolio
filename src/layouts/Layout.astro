@@ -24,10 +24,13 @@ import '../styles/main.css';
     <meta property="og:description" content={description} />
     <meta name="twitter:card" content={title} />
     <meta name="twitter:image" content={image} />
-    <script src="https://t.contentsquare.net/uxa/6edb9af2a78f0.js"></script>
+    <Fragment
+      set:html={`<script src="https://t.contentsquare.net/uxa/6edb9af2a78f0.js"></script>`}
+    />
 
     <link rel="icon" type="image/ico" href="/favicon.ico" />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script is:inline src="https://www.google.com/recaptcha/api.js" async defer
+    ></script>
 
     <title>{title}</title>
   </head>
